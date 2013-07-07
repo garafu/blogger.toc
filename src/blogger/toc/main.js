@@ -1,0 +1,299 @@
+/**
+* Blogger widget.
+* This widget provides creating table of contents page 
+* about your blogger posts.
+*/
+/**
+* @license  Copyright (c) 2013 akinari tsugo
+* This script released under the MIT license (MIT-LICENSE.txt).
+*/
+goog.provide('garafu.blogger.toc.Main');
+
+goog.require('goog.events');
+goog.require('garafu.date.W3CDTF');
+goog.require('garafu.blogger.toc.sorter.PublishedDateSorter');
+goog.require('garafu.blogger.toc.sorter.TitleNameSorter');
+goog.require('garafu.blogger.toc.sorter.UpdatedDateSorter');
+goog.require('garafu.blogger.toc.printer.TitlePrinter');
+goog.require('garafu.blogger.toc.printer.LabelPrinter');
+goog.require('garafu.blogger.toc.Settings');
+
+
+
+
+// --------------------------------------------------------------------------------
+//  constructor
+// --------------------------------------------------------------------------------
+/**
+* @class
+* @public
+* @constructor
+*/
+garafu.blogger.toc.Main = function () {
+    this._settings = new garafu.blogger.toc.Settings();
+    this._sorter = this.createSorter();
+    this._printer = this.createPrinter();
+    this.requestedCount = 0;
+    this.request();
+};
+
+
+
+
+// --------------------------------------------------------------------------------
+//  static property
+// --------------------------------------------------------------------------------
+/**
+* Singleton instance.
+*
+* @private
+*/
+garafu.blogger.toc.Main._instance = null;
+
+
+
+
+/**
+* Revieved data.
+*
+* @private
+*/
+var contract = contract || undefined;
+garafu.blogger.toc.Main._data = contract;
+
+
+
+
+// --------------------------------------------------------------------------------
+//  static method
+// --------------------------------------------------------------------------------
+/**
+* Callback when feed data has been recieved.
+*
+* @public
+* @static
+* @param    {object}    Recieved data.
+*/
+garafu.blogger.toc.Main.load = function (data) {
+    var self, origin, additional, merged;
+    
+    // Get singleton instance.
+    self = garafu.blogger.toc.Main._instance;
+    
+    // Merge recieved data.
+    if (!garafu.blogger.toc.Main._data) {
+        garafu.blogger.toc.Main._data = data;
+    } else {
+        origin = garafu.blogger.toc.Main._data.feed.entry;
+        additional = data.feed.entry;
+        merged = origin.concat(additional);
+        garafu.blogger.toc.Main._data.feed.entry = merged;
+    }
+    
+    // Whether need to additional request.
+    if (!self.isAllReceived()) {
+        // Request additional data.
+        self.request();
+    } else {
+        // Sort data.
+        self.sort(garafu.blogger.toc.Main._data);
+        
+        // Print data.
+        self.print(garafu.blogger.toc.Main._data);
+    }
+};
+
+
+
+
+// --------------------------------------------------------------------------------
+//  method
+// --------------------------------------------------------------------------------
+/**
+* Get the value indicating whether the all feed data has been recieved or not.
+*
+* @public
+* @return   {boolean}   The value indicating whether the all feed data has been recieved.
+*/
+garafu.blogger.toc.Main.prototype.isAllReceived = function () {
+    return this._settings.maxResults <= this.requestedCount;
+};
+
+
+
+
+/**
+* Try to request the feed data.
+*
+* @public
+*/
+garafu.blogger.toc.Main.prototype.request = function () {
+    var url, script, startIndex, endIndex;
+    
+    // Calculate startIndex.
+    startIndex = this.requestedCount + 1;
+    
+    // Calculate maxResults.
+    if (this.requestedCount + 500 < this._settings.maxResults) {
+        endIndex = this.requestedCount + 500;
+    } else {
+        endIndex = this._settings.maxResults - this.requestedCount;
+    }
+    
+    // Create request URL
+    url = this.createRequestURL(startIndex, endIndex);
+    
+    // Create script DOM element.
+    script = document.createElement('script');
+    script.src = url;
+    script.type = 'text/javascript';
+    
+    // Append to the body DOM element.
+    document.body.appendChild(script);
+    
+    // Update requested counter.
+    this.requestedCount = endIndex;
+};
+
+
+
+
+/**
+* Create request feed data URL.
+*
+* @public
+* @param    {number}    startIndex  Start index to recieve.
+* @param    {number}    maxResults  Max recieve count.
+* @return   {string}    Created request URL.
+*/
+garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxResults) {
+    var settings = this._settings;
+    var sorter = this._sorter;
+    var url = '';
+    
+    // Create request URL.
+    url += 'http:\/\/';
+    url += settings.blogURL;
+    url += '\/feeds\/posts\/summary?';
+    url += 'redirect=false&';
+    url += 'start-index=' + startIndex + '&';
+    url += 'max-results=' + maxResults + '&';
+    url += 'orderby=' + sorter.getOrderByValue() + '&';
+    url += 'alt=json-in-script&';
+    url += 'callback=garafu.blogger.toc.load'
+    
+    return url;
+};
+
+
+
+
+/**
+* Sort recieved data.
+*
+* @public
+* @param    {object}    Recieved data.
+*/
+garafu.blogger.toc.Main.prototype.sort = function (data) {
+    var sorter = this._sorter;
+    sorter.execute(data.feed || {});
+};
+
+
+
+
+/**
+* Print recieved data.
+*
+* @public
+* @param    {object}    Recieved data.
+*/
+garafu.blogger.toc.Main.prototype.print = function (data) {
+    var printer = this._printer;
+    printer.execute(data.feed || {});
+};
+
+
+
+
+/**
+* Create sorter delegated instance according to the setting.
+*
+* @private
+* @return   {garafu.blogger.toc.AbstractSorter}     Concreate Sorter instance.
+*/
+garafu.blogger.toc.Main.prototype.createSorter = function () {
+    var orderby = this._settings.orderby;
+    
+    switch (orderby.toLowerCase()) {
+        case 'published':
+            return new garafu.blogger.toc.sorter.PublishedDateSorter();
+        case 'updated':
+            return new garafu.blogger.toc.sorter.UpdatedDateSorter();
+        case 'title':
+            return new garafu.blogger.toc.sorter.TitleNameSorter();
+        default:
+            return new garafu.blogger.toc.sorter.PublishedDateSorter();
+    }
+};
+
+
+
+
+/**
+* Create printer delegated instance according to the setting.
+*
+* @private
+* @return   {garafu.blogger.toc.AbstractPrinter}    Concreate Printer instance.
+*/
+garafu.blogger.toc.Main.prototype.createPrinter = function () {
+    var printby = this._settings.printby;
+    
+    switch (printby.toLowerCase()) {
+        case 'title':
+            return new garafu.blogger.toc.printer.TitlePrinter();
+        case 'label':
+            return new garafu.blogger.toc.printer.LabelPrinter();
+        default:
+            return new garafu.blogger.toc.printer.TitlePrinter();
+    }
+};
+
+
+
+
+// --------------------------------------------------------------------------------
+// Create initial instance.
+goog.events.listen(window, 'load', function () {
+    var scriptElements, currentScriptElement, rootElement, i;
+    
+    // Create initial singleton instance.
+    garafu.blogger.toc.Main._instance = new garafu.blogger.toc.Main();
+    
+    // Create container DOM element.
+    rootElement = document.createElement('div');
+    rootElement.id = 'poststoc';
+    
+    // Get script DOM element list.
+    scriptElements = document.body.getElementsByTagName('script');
+    
+    // Search current script DOM element.
+    for (i = scriptElements.length; i--;) {
+        if ((scriptElements[i].src || '').indexOf('toc') < 0) {
+            continue;
+        } else {
+            currentScriptElement = scriptElements[i];
+            break;
+        }
+    }
+    
+    // Add the container DOM element to the next sibling of current script DOM element.
+    currentScriptElement.parentNode.appendChild(rootElement);
+});
+
+
+
+
+// --------------------------------------------------------------------------------
+// Exports static function.
+goog.exportSymbol('garafu.blogger.toc.load', garafu.blogger.toc.Main.load);
