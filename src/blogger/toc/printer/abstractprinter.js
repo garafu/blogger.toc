@@ -11,5 +11,6 @@ goog.provide('garafu.blogger.toc.printer.AbstractPrinter');
 * @constructor
 * @class
 */
-garafu.blogger.toc.printer.AbstractPrinter = function () {
+garafu.blogger.toc.printer.AbstractPrinter = function (settings) {
+    this._settings = settings;
 };

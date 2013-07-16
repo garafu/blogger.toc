@@ -1,22 +1,18 @@
 /**
-* Blogger widget.
-* This widget provides creating table of contents page 
-* about your blogger posts.
-*/
-/**
-* @license  Copyright (c) 2013 akinari tsugo
+* Copyright (c) 2013 akinari tsugo
 * This script released under the MIT license (MIT-LICENSE.txt).
 */
 goog.provide('garafu.blogger.toc.Main');
 
-goog.require('goog.events');
-goog.require('garafu.date.W3CDTF');
 goog.require('garafu.blogger.toc.sorter.PublishedDateSorter');
 goog.require('garafu.blogger.toc.sorter.TitleNameSorter');
 goog.require('garafu.blogger.toc.sorter.UpdatedDateSorter');
 goog.require('garafu.blogger.toc.printer.TitlePrinter');
 goog.require('garafu.blogger.toc.printer.LabelPrinter');
 goog.require('garafu.blogger.toc.Settings');
+goog.require('garafu.date.W3CDTF');
+goog.require('garafu.dom');
+goog.require('garafu.events');
 
 
 
@@ -43,6 +39,27 @@ garafu.blogger.toc.Main = function () {
 // --------------------------------------------------------------------------------
 //  static property
 // --------------------------------------------------------------------------------
+
+/**
+* Canvas ID string.
+*
+* @private
+*/
+garafu.blogger.toc.Main.CANVAS_ID = '__garafu.blogger.toc__' + (new Date()).getTime();
+
+
+
+
+/**
+* Callback function name string.
+*
+* @private
+*/
+garafu.blogger.toc.Main.CALLBACK_NAME = 'garafu.blogger.toc.load';
+
+
+
+
 /**
 * Singleton instance.
 *
@@ -95,6 +112,9 @@ garafu.blogger.toc.Main.load = function (data) {
         // Request additional data.
         self.request();
     } else {
+        // Remove loading message.
+        garafu.dom.removeChildren(document.getElementById(garafu.blogger.toc.Main.CANVAS_ID));
+        
         // Sort data.
         self.sort(garafu.blogger.toc.Main._data);
         
@@ -180,7 +200,8 @@ garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxRe
     url += 'max-results=' + maxResults + '&';
     url += 'orderby=' + sorter.getOrderByValue() + '&';
     url += 'alt=json-in-script&';
-    url += 'callback=garafu.blogger.toc.load'
+    url += 'callback=';
+    url += garafu.blogger.toc.Main.CALLBACK_NAME;
     
     return url;
 };
@@ -196,6 +217,8 @@ garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxRe
 */
 garafu.blogger.toc.Main.prototype.sort = function (data) {
     var sorter = this._sorter;
+    
+    // Sort recieved data.
     sorter.execute(data.feed || {});
 };
 
@@ -210,7 +233,39 @@ garafu.blogger.toc.Main.prototype.sort = function (data) {
 */
 garafu.blogger.toc.Main.prototype.print = function (data) {
     var printer = this._printer;
-    printer.execute(data.feed || {});
+    var fragment, license;
+    
+    // Create contents.
+    fragment = printer.execute(data.feed || {});
+    
+    // Create license element.
+    license = this.createLicenseElement();
+    
+    // Append to display.
+    fragment.appendChild(license);
+    document.getElementById(garafu.blogger.toc.Main.CANVAS_ID).appendChild(fragment);
+};
+
+
+
+
+/**
+*
+*/
+garafu.blogger.toc.Main.prototype.createLicenseElement = function () {
+    var container = document.createElement('div');
+    var anchor = document.createElement('a');
+    var widget = document.createElement('a');
+    var profile = document.createElement('a');
+    
+    anchor.href = 'https://github.com/garafu/blogger.toc';
+    anchor.appendChild(document.createTextNode('"garafu.blogger.toc" created by garafu.'));
+    
+    container.appendChild(anchor);
+    container.style.display = 'block';
+    container.style.fontSize = 'small';
+    
+    return container;
 };
 
 
@@ -223,17 +278,18 @@ garafu.blogger.toc.Main.prototype.print = function (data) {
 * @return   {garafu.blogger.toc.AbstractSorter}     Concreate Sorter instance.
 */
 garafu.blogger.toc.Main.prototype.createSorter = function () {
-    var orderby = this._settings.orderby;
+    var settings = this._settings;
+    var orderby = settings.orderby;
     
     switch (orderby.toLowerCase()) {
         case 'published':
-            return new garafu.blogger.toc.sorter.PublishedDateSorter();
+            return new garafu.blogger.toc.sorter.PublishedDateSorter(settings);
         case 'updated':
-            return new garafu.blogger.toc.sorter.UpdatedDateSorter();
+            return new garafu.blogger.toc.sorter.UpdatedDateSorter(settings);
         case 'title':
-            return new garafu.blogger.toc.sorter.TitleNameSorter();
+            return new garafu.blogger.toc.sorter.TitleNameSorter(settings);
         default:
-            return new garafu.blogger.toc.sorter.PublishedDateSorter();
+            return new garafu.blogger.toc.sorter.PublishedDateSorter(settings);
     }
 };
 
@@ -247,15 +303,16 @@ garafu.blogger.toc.Main.prototype.createSorter = function () {
 * @return   {garafu.blogger.toc.AbstractPrinter}    Concreate Printer instance.
 */
 garafu.blogger.toc.Main.prototype.createPrinter = function () {
-    var printby = this._settings.printby;
+    var settings = this._settings;
+    var printby = settings.printby;
     
     switch (printby.toLowerCase()) {
         case 'title':
-            return new garafu.blogger.toc.printer.TitlePrinter();
+            return new garafu.blogger.toc.printer.TitlePrinter(settings);
         case 'label':
-            return new garafu.blogger.toc.printer.LabelPrinter();
+            return new garafu.blogger.toc.printer.LabelPrinter(settings);
         default:
-            return new garafu.blogger.toc.printer.TitlePrinter();
+            return new garafu.blogger.toc.printer.TitlePrinter(settings);
     }
 };
 
@@ -264,36 +321,23 @@ garafu.blogger.toc.Main.prototype.createPrinter = function () {
 
 // --------------------------------------------------------------------------------
 // Create initial instance.
-goog.events.listen(window, 'load', function () {
+garafu.events.addEventHandler(window, 'load', function () {
     var scriptElements, currentScriptElement, rootElement, i;
     
     // Create initial singleton instance.
     garafu.blogger.toc.Main._instance = new garafu.blogger.toc.Main();
-    
-    // Create container DOM element.
-    rootElement = document.createElement('div');
-    rootElement.id = 'poststoc';
-    
-    // Get script DOM element list.
-    scriptElements = document.body.getElementsByTagName('script');
-    
-    // Search current script DOM element.
-    for (i = scriptElements.length; i--;) {
-        if ((scriptElements[i].src || '').indexOf('toc') < 0) {
-            continue;
-        } else {
-            currentScriptElement = scriptElements[i];
-            break;
-        }
-    }
-    
-    // Add the container DOM element to the next sibling of current script DOM element.
-    currentScriptElement.parentNode.appendChild(rootElement);
 });
 
 
 
 
 // --------------------------------------------------------------------------------
+// Write canvas DOM element.
+document.write('<div id="' + garafu.blogger.toc.Main.CANVAS_ID + '" class="poststoc">LOAD DATA ...</div>');
+
+
+
+
+// --------------------------------------------------------------------------------
 // Exports static function.
-goog.exportSymbol('garafu.blogger.toc.load', garafu.blogger.toc.Main.load);
+goog.exportSymbol(garafu.blogger.toc.Main.CALLBACK_NAME, garafu.blogger.toc.Main.load);

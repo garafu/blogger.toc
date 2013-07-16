@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------
-//  garafu.blogger.toc.sorter.AbstractSorter class
-// --------------------------------------------------------------------------------
 goog.provide('garafu.blogger.toc.sorter.AbstractSorter');
 
 
@@ -14,7 +11,8 @@ goog.provide('garafu.blogger.toc.sorter.AbstractSorter');
 * @constructor
 * @class
 */
-garafu.blogger.toc.sorter.AbstractSorter = function () {
+garafu.blogger.toc.sorter.AbstractSorter = function (settings) {
+    this._settings = settings;
 };
 
 

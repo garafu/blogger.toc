@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------
-//  garafu.blogger.toc.printer.TitlePrinter class
-// --------------------------------------------------------------------------------
 goog.provide('garafu.blogger.toc.printer.TitlePrinter');
 
 goog.require('garafu.blogger.toc.printer.AbstractPrinter');
@@ -16,8 +13,8 @@ goog.require('garafu.blogger.toc.printer.AbstractPrinter');
 * @constructor
 * @class
 */
-garafu.blogger.toc.printer.TitlePrinter = function () {
-    goog.base(this);
+garafu.blogger.toc.printer.TitlePrinter = function (settings) {
+    goog.base(this, settings);
 };
 goog.inherits(garafu.blogger.toc.printer.TitlePrinter, garafu.blogger.toc.printer.AbstractPrinter);
 
@@ -36,7 +33,8 @@ garafu.blogger.toc.printer.TitlePrinter.prototype.execute = function (feed) {
     
     list = this.createList(entry);
     
-    document.getElementById('poststoc').appendChild(list);
+    //document.getElementById('poststoc').appendChild(list);
+    return list;
 };
 
 

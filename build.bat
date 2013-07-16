@@ -21,16 +21,19 @@ set OUTPUT_FILE=.\build\blogger.toc.min.js
 
 %CLOSUREBUILDERPY% ^
     --root=%CLOSURE_LIBRARY_DIR% ^
-    --root=%CLOSERU_LIBRARY_THIRD_DIR% ^
     --root=%SOURCE_CODE_DIR% ^
     --namespace=%MAIN_CLASS_NAME% ^
     --output_mode=compiled ^
     --compiler_jar=%CLOSURECOMPILERJAR% ^
+    --compiler_flags="--output_wrapper=\"/** Copyright (c) 2013 akinari tsugo */%%output%%\"" ^
     --compiler_flags="--compilation_level=ADVANCED_OPTIMIZATIONS" ^
     --compiler_flags="--externs=%CONTRACT_JS%" ^
     --compiler_flags="--js_output_file=%OUTPUT_FILE%"
 
 
 
-rem     --compiler_flags="--formatting=pretty_print" ^
+rem    --root=%CLOSERU_LIBRARY_THIRD_DIR% ^
+rem    --compiler_flags="--formatting=print_input_delimiter" ^
+rem    --compiler_flags="--create_name_map_files=true" ^
+rem    --compiler_flags="--formatting=pretty_print" ^
 

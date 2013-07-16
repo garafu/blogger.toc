@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------
-//  garafu.blogger.toc.OrderByPublishedDate class
-// --------------------------------------------------------------------------------
 goog.provide('garafu.blogger.toc.printer.LabelPrinter');
 
 goog.require('garafu.blogger.toc.printer.AbstractPrinter');
@@ -16,8 +13,8 @@ goog.require('garafu.blogger.toc.printer.AbstractPrinter');
 * @constructor
 * @class
 */
-garafu.blogger.toc.printer.LabelPrinter = function () {
-    goog.base(this);
+garafu.blogger.toc.printer.LabelPrinter = function (settings) {
+    goog.base(this, settings);
 };
 goog.inherits(garafu.blogger.toc.printer.LabelPrinter, garafu.blogger.toc.printer.AbstractPrinter);
 
@@ -55,19 +52,35 @@ garafu.blogger.toc.printer.LabelPrinter.prototype.execute = function (feed) {
             ul = categoryElement.getElementsByTagName('ul')[0];
             li = document.createElement('li');
             li.appendChild(this.createEntry(entryItem));
+            li.className = 'poststoc-item';
             ul.appendChild(li);
         }
     }
     
-    document.getElementById('poststoc').appendChild(fragment);
+    //document.getElementById('poststoc').appendChild(fragment);
+    return fragment;
 };
 
 garafu.blogger.toc.printer.LabelPrinter.prototype.createCategory = function (category) {
+    var settings = this._settings;
     var container = document.createElement('div');
     var title = document.createElement('div');
+    var anchor = document.createElement('a');
     var list = document.createElement('ul');
+    var url = '';
     
-    title.appendChild(document.createTextNode(category.term));
+    // Create label search URL.
+    url += 'http://'
+    url += settings.blogURL;
+    url += '/search/label/';
+    url += category.term;
+    
+    // Set style.
+    anchor.appendChild(document.createTextNode(category.term));
+    anchor.href = url;
+    anchor.className = 'poststoc-category-anchor';
+    
+    title.appendChild(anchor);
     title.className = 'poststoc-category-title';
     
     list.className = 'poststoc-list';

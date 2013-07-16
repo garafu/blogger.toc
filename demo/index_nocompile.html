@@ -2,24 +2,23 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/simple.css" />
 </head>
 <body>
-<script type="text/javascript">
-var POSTSTOC_SETTINGS = {
-    blogURL: 'garafu.blogspot.jp',
-    maxResults: 500,
-    style: '',
-    orderby: 'updated',
-    printby: 'title',
-    updatedDateEnabled: false,
-    publishedDateEnabled: true
-};
-</script>
-<script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
-<script type="text/javascript" src="../lib/closure-library/closure/goog/deps.js"></script>
-<script type="text/javascript" src="../src/deps.js"></script>
-<script type="text/javascript">
-goog.require('garafu.blogger.toc.Main');
-</script>
+<div>
+    <script type="text/javascript">
+    var POSTSTOC_SETTINGS = {
+        blogURL: 'garafu.blogspot.jp',
+        maxResults: 500,
+        orderby: 'title',
+        printby: 'label'
+    };
+    </script>
+    <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
+    <script type="text/javascript" src="../src/deps.js"></script>
+    <script type="text/javascript">
+    goog.require('garafu.blogger.toc.Main');
+    </script>
+</div>
 </body>
 </html>

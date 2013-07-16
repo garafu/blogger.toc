@@ -1,6 +1,3 @@
-// --------------------------------------------------------------------------------
-//  garafu.blogger.toc.sorter.PublishedDateSorter class
-// --------------------------------------------------------------------------------
 goog.provide('garafu.blogger.toc.sorter.PublishedDateSorter');
 
 goog.require('garafu.blogger.toc.sorter.AbstractSorter');
@@ -16,8 +13,8 @@ goog.require('garafu.blogger.toc.sorter.AbstractSorter');
 * @constructor
 * @class
 */
-garafu.blogger.toc.sorter.PublishedDateSorter = function () {
-    goog.base(this);
+garafu.blogger.toc.sorter.PublishedDateSorter = function (settings) {
+    goog.base(this, settings);
 };
 goog.inherits(garafu.blogger.toc.sorter.PublishedDateSorter, garafu.blogger.toc.sorter.AbstractSorter);
 
