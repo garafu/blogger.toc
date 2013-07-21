@@ -95,7 +95,7 @@ garafu.blogger.toc.Main.load = function (data) {
     var self, origin, additional, merged;
     
     // Get singleton instance.
-    self = garafu.blogger.toc.Main._instance;
+    self = garafu.blogger.toc.Main.getInstance();
     
     // Merge recieved data.
     if (!garafu.blogger.toc.Main._data) {
@@ -129,6 +129,26 @@ garafu.blogger.toc.Main.load = function (data) {
 // --------------------------------------------------------------------------------
 //  method
 // --------------------------------------------------------------------------------
+/**
+* Get the singleton instance.
+*
+* @public
+* @return   {garafu.blogger.toc.Main}   Singleton instance.
+*/
+garafu.blogger.toc.Main.getInstance = function () {
+    var instance = garafu.blogger.toc.Main._instance;
+    
+    if (!instance) {
+        instance = new garafu.blogger.toc.Main();
+        garafu.blogger.toc.Main._instance = instance;
+    }
+    
+    return instance;
+};
+
+
+
+
 /**
 * Get the value indicating whether the all feed data has been recieved or not.
 *
@@ -325,7 +345,7 @@ garafu.events.addEventHandler(window, 'load', function () {
     var scriptElements, currentScriptElement, rootElement, i;
     
     // Create initial singleton instance.
-    garafu.blogger.toc.Main._instance = new garafu.blogger.toc.Main();
+    garafu.blogger.toc.Main.getInstance();
 });
 
 
