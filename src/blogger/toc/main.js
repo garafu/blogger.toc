@@ -9,6 +9,8 @@ goog.require('garafu.blogger.toc.sorter.TitleNameSorter');
 goog.require('garafu.blogger.toc.sorter.UpdatedDateSorter');
 goog.require('garafu.blogger.toc.printer.TitlePrinter');
 goog.require('garafu.blogger.toc.printer.LabelPrinter');
+goog.require('garafu.blogger.toc.printer.LabelNameOrderPrinter');
+goog.require('garafu.blogger.toc.printer.LabelContentsOrderPrinter');
 goog.require('garafu.blogger.toc.Settings');
 goog.require('garafu.date.W3CDTF');
 goog.require('garafu.dom');
@@ -332,6 +334,10 @@ garafu.blogger.toc.Main.prototype.createPrinter = function () {
             return new garafu.blogger.toc.printer.TitlePrinter(settings);
         case 'label':
             return new garafu.blogger.toc.printer.LabelPrinter(settings);
+        case 'label.nameorder':
+            return new garafu.blogger.toc.printer.LabelNameOrderPrinter(settings);
+        case 'label.contentsorder':
+            return new garafu.blogger.toc.printer.LabelContentsOrderPrinter(settings);
         default:
             return new garafu.blogger.toc.printer.TitlePrinter(settings);
     }

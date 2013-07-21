@@ -1,6 +1,8 @@
 goog.provide('garafu.blogger.toc.printer.LabelPrinter');
 
 goog.require('garafu.blogger.toc.printer.AbstractPrinter');
+goog.require('garafu.blogger.toc.printer.Category');
+goog.require('garafu.blogger.toc.printer.Entry');
 
 
 
@@ -28,92 +30,68 @@ goog.inherits(garafu.blogger.toc.printer.LabelPrinter, garafu.blogger.toc.printe
 * @public
 */
 garafu.blogger.toc.printer.LabelPrinter.prototype.execute = function (feed) {
-    var entry = feed.entry || [];
-    var category = feed.category || [];
-    var count = 0;
-    var i, j, hash, list;
-    var fragment, entryItem, categoryList, categoryElement, ul, li;
+    var settings = this._settings;
+    var entryList = feed.entry || [];
+    var categoryList = feed.category || [];
+    var i, j, length, hash, list;
+    var fragment, categoryItem, entryItem, category, entry;
     
     hash = {};
-    for (i = category.length; i--;) {
-        hash[category[i].term] = i;
-    }
-
+    list = [];
     fragment = document.createDocumentFragment();
-    for (i = category.length; i--;) {
-        fragment.appendChild(this.createCategory(category[i]));
-    }
     
-    for (i = entry.length; i--;) {
-        entryItem = entry[i];
-        categoryList = entryItem.category;
+//// Create category.
+//for (i = 0, length = categoryList.length; i < length; i++) {
+//    categoryItem = categoryList[i];
+//    category = new garafu.blogger.toc.printer.Category(settings, categoryItem);
+//    hash[category.getName()] = category;
+//    list[list.length] = category;
+//}
+    
+    // Create categry & entry.
+    for (i = 0, length = entryList.length; i < length; i++) {
+        entryItem = entryList[i];
+        categoryList = entryItem.category || [];
         for (j = categoryList.length; j--;) {
-            categoryElement = fragment.childNodes[hash[categoryList[j].term]];
-            ul = categoryElement.getElementsByTagName('ul')[0];
-            li = document.createElement('li');
-            li.appendChild(this.createEntry(entryItem));
-            li.className = 'poststoc-item';
-            ul.appendChild(li);
+            categoryItem = categoryList[j];
+            
+            // Create entry object.
+            entry = new garafu.blogger.toc.printer.Entry(settings, entryItem);
+            
+            // Try to get specific category object.
+            category = hash[categoryItem.term];
+            if (!category) {
+                // Create category object.
+                category = new garafu.blogger.toc.printer.Category(settings, categoryItem);
+                
+                // Add to hash array and list.
+                hash[categoryItem.term] = category;
+                list[list.length] = category;
+            }
+            
+            // Add created entry object to the category object.
+            category.addEntry(entry);
         }
     }
     
-    //document.getElementById('poststoc').appendChild(fragment);
+    // Sort category.
+    list = this.sort(list);
+    
+    // Append to document fragment.
+    for (i = 0, length = list.length; i < length; i++) {
+        fragment.appendChild(list[i].getRootElement());
+    }
+    
     return fragment;
 };
 
-garafu.blogger.toc.printer.LabelPrinter.prototype.createCategory = function (category) {
-    var settings = this._settings;
-    var container = document.createElement('div');
-    var title = document.createElement('div');
-    var anchor = document.createElement('a');
-    var list = document.createElement('ul');
-    var url = '';
-    
-    // Create label search URL.
-    url += 'http://'
-    url += settings.blogURL;
-    url += '/search/label/';
-    url += category.term;
-    
-    // Set style.
-    anchor.appendChild(document.createTextNode(category.term));
-    anchor.href = url;
-    anchor.className = 'poststoc-category-anchor';
-    
-    title.appendChild(anchor);
-    title.className = 'poststoc-category-title';
-    
-    list.className = 'poststoc-list';
-    
-    container.appendChild(title);
-    container.appendChild(list);
-    container.className = 'poststoc-category';
-    
-    return container;
+
+
+/**
+* Sort category name list.
+* @public
+*/
+garafu.blogger.toc.printer.LabelPrinter.prototype.sort = function (originalList) {
+    return originalList;
 };
-
-garafu.blogger.toc.printer.LabelPrinter.prototype.createEntry = function (entry) {
-    var container = document.createElement('span');
-    var published = document.createElement('span');
-    var updated = document.createElement('span');
-    var title = document.createElement('a');
-
-    published.appendChild(document.createTextNode(entry.published.$t));
-    published.className = 'poststoc-published';
-    
-    updated.appendChild(document.createTextNode(entry.updated.$t));
-    updated.className = 'poststoc-updated';
-    
-    title.appendChild(document.createTextNode(entry.title.$t));
-    title.href = entry.link[entry.link.length - 1].href;
-    title.className = 'poststoc-title';
-    
-    container.appendChild(published);
-    container.appendChild(updated);
-    container.appendChild(title);
-    container.className = 'poststoc-entry';
-    
-    return container;
-};
-
 
