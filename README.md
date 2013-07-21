@@ -4,16 +4,11 @@ Blogger Table of Contents (blogger.toc)
 Automatic creater for Blogger table of contents(TOC).
 This script creates TOC of your blogger using feed data.
 
-Sort order
 
- * title name
- * published date
- * updated date
+Demo
+--------------------------
 
-Print type
-
- * title
- * label (category)
+[Try it out !!](http://garafu.github.io/blogger.toc/demo/index.html)
 
 
 Usage
