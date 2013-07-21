@@ -279,11 +279,12 @@ garafu.blogger.toc.Main.prototype.createLicenseElement = function () {
     var profile = document.createElement('a');
     
     anchor.href = 'https://github.com/garafu/blogger.toc';
-    anchor.appendChild(document.createTextNode('"garafu.blogger.toc" created by garafu.'));
+    anchor.appendChild(document.createTextNode('This page uses "blogger.toc" created by garafu.'));
     
     container.appendChild(anchor);
     container.style.display = 'block';
     container.style.fontSize = 'small';
+    container.style.margin = '20px 0';
     
     return container;
 };
