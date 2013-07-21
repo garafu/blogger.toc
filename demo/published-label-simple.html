@@ -6,12 +6,13 @@
 </head>
 <body>
 <div>
+    <script type="text/javascript" src="../javascripts/querystring.js"></script>
     <script type="text/javascript">
     var POSTSTOC_SETTINGS = {
-        blogURL: 'garafu.blogspot.jp',
+        blogURL: (garafu && garafu.QueryString['blogurl']) || 'garafu.blogspot.jp',
         maxResults: 500,
         orderby: 'published',
-        printby: 'title'
+        printby: 'label'
     };
     </script>
     <script type="text/javascript" src="../release/latest/blogger.toc.min.js"></script>

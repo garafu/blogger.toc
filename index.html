@@ -34,18 +34,20 @@
 <p>Automatic creater for Blogger table of contents(TOC).
 This script creates TOC of your blogger using feed data.</p>
 
-<p>Sort order</p>
 
+<h2>
+<a name="Demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
 <ul>
-<li>title name</li>
-<li>published date</li>
-<li>updated date</li>
-</ul><p>Print type</p>
+<li><a href="./demo/index.html">Try this with your blog !!</a></li>
+</ul>
+<ul>
+<li><a href="./demo/title-title-simple.html">title order, title print, simple style.</a></li>
+<li><a href="./demo/published-title-simple.html">published order, title print, simple style.</a></li>
+<li><a href="./demo/published-label-simple.html">published order, label print, simple style.</a></li>
+</ul>
 
-<ul>
-<li>title</li>
-<li>label (category)</li>
-</ul><h2>
+
+<h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Load "blogger.toc.min.js" on Blogger page like following.
@@ -60,8 +62,34 @@ var POSTSTOC_SETTINGS = {
     printby: 'title'                // Set enum ['title', 'label']
 };
 &lt;/script&gt;
-&lt;script type="text/javascript" src=".\lib\blogger.toc.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" type="text/css" href="http://garafu.github.io/blogger.toc/release/0.0.1/simple.css" /&gt;
+&lt;script type="text/javascript" src="http://garafu.github.io/blogger.toc/release/0.0.1/blogger.toc.min.js"&gt;&lt;/script&gt;
 </code></pre>
+
+<p>Sort Order</p>
+
+<ul>
+<li>title name</li>
+<li>published date</li>
+<li>updated date</li>
+</ul>
+
+<p>Print Type</p>
+
+<ul>
+<li>title</li>
+<li>label (category)</li>
+</ul>
+
+<p>Available Style</p>
+
+<ul>
+<li>simple</li>
+<li>tile emerald</li>
+<li>tile steel</li>
+<li>white</li>
+</ul>
+
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>

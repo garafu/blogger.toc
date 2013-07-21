@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../stylesheets/demostyles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+</head>
+<body>
+
+<div class="wrapper">
+<header>
+<h1>blogger.toc</h1>
+<a href="../index.html">HOME</a> &gt; Demo
+</header>
+
+<section>
+<h1><a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+
+<p>
+Blogger Table of Contents(TOC) widget demonstration page.
+Can try it using your blogger contents in this page.
+</p>
+
+<ol>
+    <li>
+        <div>Enter your blog URL.</div>
+        <p><span>Your Blog URL : </span><input type="text" id="blogurl" value="" /></p>
+    </li>
+    <li>
+        <div>Select options.</div>
+        <dl>
+            <dt>sort order</dt>
+            <dd>
+                <select id="sortorder">
+                    <option value="title">title name</option>
+                    <option value="published">published date</option>
+                    <option value="updated">updated date</option>
+                </select>
+            </dd>
+            <dt>print type</dt>
+            <dd>
+                <select id="printtype">
+                    <option value="title">title</option>
+                    <option value="label">label</option>
+                </select>
+            </dd>
+            <dt>print style</dt>
+            <dd>
+                <select id="printstyle">
+                    <option value="simple">simple</option>
+                    <option value="white">white</option>
+                    <option value="tile_emerald">tile emerard</option>
+                    <option value="tile_steel">tile steel</option>
+                </select>
+            </dd>
+        </dl>
+    </li>
+    <li>
+        <div>Open window.</div>
+        <p><input type="button" id="opnbtn" value="open window" /></p>
+    </li>
+</ol>
+
+<p>
+In this demonstration, write generated source code to following area.
+If you want to use this widget, copy &amp; paste generated source code.
+</p>
+<pre><code id="code"></code></pre>
+
+</section>
+
+<footer>
+</footer>
+</div>
+<script type="text/javascript" src="../javascripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../javascripts/demo/index.js"></script>
+</body>
+</html>
