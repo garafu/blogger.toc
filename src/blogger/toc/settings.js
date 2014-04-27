@@ -16,7 +16,7 @@ garafu.blogger.toc.Settings = function () {
     
     // Default settings.
     this.blogURL = this.getValueOrDefault(user['blogURL'], 'garafu.blogspot.jp');
-    this.maxResults = this.getValueOrDefault(user['maxResults'], 500);
+    this.maxResults = this.getValueOrDefault(user['maxResults'], Infinity);
     this.style = this.getValueOrDefault(user['style'], '');
     this.orderby = this.getValueOrDefault(user['orderby'], 'published');
     this.printby = this.getValueOrDefault(user['printby'], 'label');

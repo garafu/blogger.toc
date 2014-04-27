@@ -21,7 +21,7 @@ User setting should be placed before the concreate script file.
     // User Setting.
     var POSTSTOC_SETTINGS = {
         blogURL: 'garafu.blogspot.jp',  // Set your blog url.
-        maxResults: 500,                // Set max recieve data.
+        maxResults: 500,                // Set max recieve data. If set 'Infinity', you can recieve all entries.
         orderby: 'updated',             // Set enum ['title', 'published', 'updated'].
         printby: 'title'                // Set enum ['title', 'label']
     };

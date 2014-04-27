@@ -99,10 +99,10 @@ garafu.blogger.toc.Main.load = function (data) {
     // Get singleton instance.
     self = garafu.blogger.toc.Main.getInstance();
     
-    // Merge recieved data.
+    // Merge rcieved data.
     if (!garafu.blogger.toc.Main._data) {
         garafu.blogger.toc.Main._data = data;
-    } else {
+    } else if (data.feed.entry && data.feed.entry.length != 0) {
         origin = garafu.blogger.toc.Main._data.feed.entry;
         additional = data.feed.entry;
         merged = origin.concat(additional);
@@ -110,7 +110,7 @@ garafu.blogger.toc.Main.load = function (data) {
     }
     
     // Whether need to additional request.
-    if (!self.isAllReceived()) {
+    if (!self.isAllReceived(data)) {
         // Request additional data.
         self.request();
     } else {
@@ -155,10 +155,13 @@ garafu.blogger.toc.Main.getInstance = function () {
 * Get the value indicating whether the all feed data has been recieved or not.
 *
 * @public
+* @param    {object}    Recieved data.
 * @return   {boolean}   The value indicating whether the all feed data has been recieved.
 */
-garafu.blogger.toc.Main.prototype.isAllReceived = function () {
-    return this._settings.maxResults <= this.requestedCount;
+garafu.blogger.toc.Main.prototype.isAllReceived = function (data) {
+    return (this._settings.maxResults <= this.requestedCount ||
+            !data.feed.entry ||
+            (data.feed.entry && data.feed.entry.length === 0))
 };
 
 

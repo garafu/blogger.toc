@@ -30,7 +30,9 @@ set OUTPUT_FILE=.\build\blogger.toc.min.js
     --compiler_flags="--externs=%CONTRACT_JS%" ^
     --compiler_flags="--js_output_file=%OUTPUT_FILE%"
 
-
+rem for debug options.
+rem    --compiler_flags="--compilation_level=WHITESPACE_ONLY" ^
+rem    --compiler_flags="--formatting=pretty_print" ^
 
 rem    --root=%CLOSERU_LIBRARY_THIRD_DIR% ^
 rem    --compiler_flags="--formatting=print_input_delimiter" ^
