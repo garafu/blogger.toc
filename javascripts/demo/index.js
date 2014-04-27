@@ -1,5 +1,5 @@
 ﻿var DEFAULT_BLOG_URL = 'garafu.blogspot.jp';
-var GENERATE_VERSION = '0.0.1';
+var GENERATE_VERSION = 'latest';
 
 
 var createTryItOutURL = function () {
@@ -22,7 +22,6 @@ var generateSourceCode = function () {
     code += '&lt;script type="text/javascript"&gt;\r\n';
     code += 'var POSTSTOC_SETTINGS = {';
     code += ' blogURL: \'' + $('#blogurl').val() + '\',';
-    code += ' maxResults: 500,';
     code += ' orderby: \'' + $('#sortorder').val() + '\',';
     code += ' printby: \'' + $('#printtype').val() + '\'';
     code += '};\r\n';
