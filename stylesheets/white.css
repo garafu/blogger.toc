@@ -1,21 +1,21 @@
-.poststoc-category-title
+#main .poststoc-category-title
 {
 }
-.poststoc-list
+#main .poststoc-list
 {
 }
-.poststoc-published
+#main .poststoc-published
 {
     font-size: x-small;
     margin-right: 1em;
 }
-.poststoc-updated
+#main .poststoc-updated
 {
     display: none;
 }
-.poststoc-title
+#main .poststoc-title
 {
 }
-.poststoc-entry
+#main .poststoc-entry
 {
 }

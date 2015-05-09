@@ -1,42 +1,42 @@
-.poststoc
+#main .poststoc
 {
     font-size: 12px;
     font-family: Trebuchet MS', Trebuchet, Verdana, sans-serif;
 }
-.poststoc-category
+#main .poststoc-category
 {
     /*border-bottom: 1px solid #efefef;*/
 }
-.poststoc-category-title
+#main .poststoc-category-title
 {
     padding: 0.5em 0 0.5em 0.8em;
     /*border-bottom: 1px solid #ebebeb;*/
     /*border-top: 1px solid #efefef;*/
     /*box-shadow: 0 1px 1px #efefef;*/
 }
-.poststoc-list
+#main .poststoc-list
 {
 }
-.poststoc-entry
+#main .poststoc-entry
 {
 }
-.poststoc-published
-{
-    display: none;
-}
-.poststoc-updated
+#main .poststoc-published
 {
     display: none;
 }
-.poststoc-title
+#main .poststoc-updated
+{
+    display: none;
+}
+#main .poststoc-title
 {
     text-decoration: none;
     color: #2288bb;
 }
-.poststoc-title:hover
+#main .poststoc-title:hover
 {
     text-decoration: underline;
 }
-.poststoc-title:visited
+#main .poststoc-title:visited
 {
 }
