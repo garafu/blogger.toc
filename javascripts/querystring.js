@@ -1,30 +1,45 @@
 var garafu = garafu || {};
 
 
-garafu.QueryString = function () {
-    var locationSearch = document.location.search;
-    var result = {};
-    var query, parameters, i, item, key, val;
-    
-    if (locationSearch.length < 2) {
-        garafu.QueryString = null;
-    }
-    
-    query = locationSearch.substring(1);
-    
-    parameters = query.split('&');
-    
-    for (i = parameters.length; i--;) {
-        item = parameters[i].split('=');
-        
-        key = decodeURIComponent(item[0]);
-        val = decodeURIComponent(item[1]);
-        
-        result[key] = val;
-    }
-    
-    garafu.QueryString = result;
-};
+garafu.QueryString = (function () {
+    var queryString, queryItems, queryItem,
+    i, length, matchs, key, pkey, skey, value, list, hash, params = {};
 
+    // Get query string.
+    queryString = window.location.search || '';
+    queryString = queryString.substr(1, queryString.length);
 
-garafu.QueryString();
+    // Split to parameters.
+    queryItems = queryString.split('&');
+
+    // Split to tupples.
+    for (i = 0, length = queryItems.length; i < length; i++) {
+        // Pick up a tupple.
+        queryItem = (queryItems[i] || '').split('=');
+
+        // Split to key value pair.
+        key = queryItem[0];
+        value = queryItem[1] ? window.decodeURIComponent(queryItem[1]) : undefined;
+
+        // Create object according to the key string.
+        matchs = (/([\w$]*)\[([\w$]*)\]/g).exec(key);
+        if (matchs === null) {
+            // Simple key value.
+            params[key] = value;
+        } else {
+            pkey = matchs[1];
+            skey = matchs[2];
+            if (!skey) {
+                // Set item in to the array item.
+                list = params[pkey] = params[pkey] || [];
+                list[list.length] = value;
+            } else {
+                // Set item in to the hash map.
+                hash = params[pkey] = params[pkey] || {};
+                hash[skey] = value;
+            }
+        }
+    }
+
+    return params;
+})();

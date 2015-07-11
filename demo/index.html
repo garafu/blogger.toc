@@ -2,6 +2,7 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/demostyles.css">
     <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
 </head>
@@ -23,43 +24,98 @@ Can try it using your blogger contents in this page.
 
 <ol>
     <li>
-        <div>Enter your blog URL.</div>
-        <p><span>Your Blog URL : </span><input type="text" id="blogurl" value="" /></p>
+        <p>Enter your blog URL.</p>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="blogurl" class="control-label">Your Blog URL : </label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" id="blogurl" value=""  class="form-control"/>
+                </div>
+            </div>
+        </div>
     </li>
     <li>
-        <div>Select options.</div>
-        <dl>
-            <dt>sort order</dt>
-            <dd>
-                <select id="sortorder">
-                    <option value="title">title name</option>
-                    <option value="published">published date</option>
-                    <option value="updated">updated date</option>
-                </select>
-            </dd>
-            <dt>print type</dt>
-            <dd>
-                <select id="printtype">
-                    <option value="title">title</option>
-                    <option value="label">label</option>
-                    <option value="label.nameorder">label (name order)</option>
-                    <option value="label.contentsorder">label (contents order)</option>
-                </select>
-            </dd>
-            <dt>print style</dt>
-            <dd>
-                <select id="printstyle">
-                    <option value="simple">simple</option>
-                    <option value="white">white</option>
-                    <option value="tile_emerald">tile emerard</option>
-                    <option value="tile_steel">tile steel</option>
-                </select>
-            </dd>
-        </dl>
+        <p>Select options.</p>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="sortorder" class="control-label">sort order</label>
+                </div>
+                <div class="col-sm-10">
+                    <select id="sortorder" class="form-control">
+                        <option value="title">title name</option>
+                        <option value="published">published date</option>
+                        <option value="updated">updated date</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="printtype" class="control-label">print type</label>
+                </div>
+                <div class="col-sm-10">
+                    <select id="printtype" class="form-control">
+                        <option value="title">title</option>
+                        <option value="label">label</option>
+                        <option value="label.nameorder">label (name order)</option>
+                        <option value="label.contentsorder">label (contents order)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="printstyle" class="control-label">print style</label>
+                </div>
+                <div class="col-sm-10">
+                    <select id="printstyle" class="form-control">
+                        <option value="simple">simple</option>
+                        <option value="white">white</option>
+                        <option value="tile_emerald">tile emerard</option>
+                        <option value="tile_steel">tile steel</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="" class="control-label">thumbnail</label>
+                </div>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="thumbnail-enabled"/>Enabled</label>
+                    </div>
+                </div>
+            </div>
+            <div id="thumbnailopt" style="display:none;">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <label for="" class="control-label">no image URL</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" id="thumbnail-noimageurl" value="" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="" class="control-label"></label>
+                </div>
+                <div class="col-sm-10">
+                </div>
+            </div>
+-->
+        </div>
     </li>
+
     <li>
-        <div>Open window.</div>
-        <p><input type="button" id="opnbtn" value="open window" /></p>
+        <p>Open window.</p>
+        <div class="form">
+            <div class="form-group">
+                <input type="button" id="opnbtn" value="open window" class="btn btn-primary"/>
+            </div>
+        </div>
     </li>
 </ol>
 
