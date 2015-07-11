@@ -7,22 +7,26 @@ goog.provide('garafu.blogger.toc.Settings');
 //  garafu.blogger.toc.Settings class
 // --------------------------------------------------------------------------------
 /**
+* @class
 * @putlic
 * @constructor
-* @class
 */
 garafu.blogger.toc.Settings = function () {
-    var user = window['POSTSTOC_SETTINGS'] || {};
-    
-    // Default settings.
-    this.blogURL = this.getValueOrDefault(user['blogURL'], 'garafu.blogspot.jp');
-    this.maxResults = this.getValueOrDefault(user['maxResults'], Infinity);
-    this.style = this.getValueOrDefault(user['style'], '');
-    this.orderby = this.getValueOrDefault(user['orderby'], 'published');
-    this.printby = this.getValueOrDefault(user['printby'], 'label');
-    this.labelListEnabled = this.getValueOrDefault(user['labelListEnabled'], true);
-    this.updatedDateEnabled = this.getValueOrDefault(user['updatedDateEnabled'], false);
-    this.publishedDateEnabled = this.getValueOrDefault(user['publishedDateEnabled'], true);
+
+    // Set default settings.
+    var defaultSettings = {
+        blogURL: 'garafu.blogspot.jp',
+        maxResults: Infinity,
+        orderby: 'published',
+        printby: 'label',
+        thumbnail: {
+            enabled: false,
+            noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.4/noimage.png'
+        }
+    };
+
+    // Apply user settings or default settings.
+    this.merge(this, POSTSTOC_SETTINGS, defaultSettings);
 };
 
 
@@ -45,17 +49,17 @@ garafu.blogger.toc.Settings.prototype.getValueOrDefault = function (userSetting,
 /**
 * @private
 */
-garafu.blogger.toc.Settings.prototype.merge = function () {
-    var userSettings, i, key, value;
-    
-    // Get user settings from global object.
-    userSettings = window['POSTSTOC_SETTINGS'] || {};
-    
-    // Merge settings.
-    for (key in this) {
-        if (typeof this[key] !== 'function' &&
-            undefined !== userSettings[key]) {
-            this[key] = userSettings[key];
+garafu.blogger.toc.Settings.prototype.merge = function (settings, userSettings, defaultSettings) {
+    var key;
+
+    userSettings = userSettings || {};
+
+    for (key in defaultSettings) {
+        if (typeof (defaultSettings[key]) === 'object') {
+            settings[key] = settings[key] || {};
+            this.merge(settings[key], userSettings[key], defaultSettings[key]);
+        } else {
+            settings[key] = this.getValueOrDefault(userSettings[key], defaultSettings[key]);
         }
     }
 };

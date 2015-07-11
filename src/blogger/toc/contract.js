@@ -121,3 +121,15 @@ var contract = {
         xmlns$thr: ''
     }
 };
+
+var POSTSTOC_SETTINGS = {
+    blogURL: '',
+    maxResults: Infinity,
+    style: '',
+    orderby: '',
+    printby: '',
+    thumbnail: {
+        enabled: false,
+        noImageURL: ''
+    }
+};

@@ -42,6 +42,6 @@ rem    --compiler_flags="--formatting=pretty_print" ^
 
 
 rem Add copyright at header.
-echo /** Copyright (c) 2013 akinari tsugo */>tmp.txt
+echo /** Copyright (c) 2013-2015 akinari tsugo */>tmp.txt
 copy /b tmp.txt+%OUTPUT_FILE% tmp.txt
 move tmp.txt %OUTPUT_FILE%

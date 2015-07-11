@@ -2,17 +2,21 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css" />
+    <!--<link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css" />-->
     <link rel="stylesheet" type="text/css" href="../stylesheets/simple.css" />
 </head>
 <body>
 <div>
+  <h1>No Compile Mode</h1>
   <div id="main">
     <script type="text/javascript">
     var POSTSTOC_SETTINGS = {
         blogURL: 'garafu.blogspot.jp',
-        orderby: 'title',
-        printby: 'label'
+        orderby: 'published',
+        printby: 'label.contentsorder',
+        thumbnail: {
+            enabled: false
+        }
     };
     </script>
     <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>

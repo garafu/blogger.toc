@@ -63,6 +63,7 @@
     <Content Include="build\blogger.toc.min.js" />
     <Content Include="demo\index_compile.html" />
     <Content Include="demo\index_nocompile.html" />
+    <Content Include="images\noimage.png" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\css\bootstrap.css" />

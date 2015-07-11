@@ -40,14 +40,6 @@ garafu.blogger.toc.printer.LabelPrinter.prototype.execute = function (feed) {
     list = [];
     fragment = document.createDocumentFragment();
     
-//// Create category.
-//for (i = 0, length = categoryList.length; i < length; i++) {
-//    categoryItem = categoryList[i];
-//    category = new garafu.blogger.toc.printer.Category(settings, categoryItem);
-//    hash[category.getName()] = category;
-//    list[list.length] = category;
-//}
-    
     // Create categry & entry.
     for (i = 0, length = entryList.length; i < length; i++) {
         entryItem = entryList[i];

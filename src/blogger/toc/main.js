@@ -24,6 +24,7 @@ goog.require('garafu.events');
 // --------------------------------------------------------------------------------
 /**
 * @class
+*
 * @public
 * @constructor
 */
@@ -73,7 +74,7 @@ garafu.blogger.toc.Main._instance = null;
 
 
 /**
-* Revieved data.
+* Recieved data.
 *
 * @private
 */
