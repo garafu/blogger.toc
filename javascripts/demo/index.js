@@ -21,6 +21,7 @@ var createTryItOutURL = function () {
     var settings = createSettings();
 
     url += './tryitout.html?';
+    url += 'printstyle=' + $('#printstyle').val() + '&';
     url += 'settings=' + encodeURIComponent(JSON.stringify(settings));
 
     return encodeURI(url);;
