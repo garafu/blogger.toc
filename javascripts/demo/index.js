@@ -1,6 +1,7 @@
 ﻿var GENERATE_VERSION = 'latest';
 var DEFAULT_BLOG_URL = 'garafu.blogspot.jp';
 var DEFAULT_NOIMAGE_URL = 'http://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/noimage.png';
+var DEFAULT_DATETIME_FORMAT = 'yyyy/MM/dd HH:mm:ss';
 
 
 var createSettings = function () {
@@ -11,6 +12,14 @@ var createSettings = function () {
         thumbnail: $('#thumbnail-enabled').prop('checked') ? {
             enabled: true,
             noImageURL: $('#thumbnail-noimageurl').val()
+        } : undefined,
+        published: $('#published-enabled').prop('checked') ? {
+            enabled: true,
+            format: $('#published-format').val()
+        } : undefined,
+        updated: $('#updated-enabled').prop('checked') ? {
+            enabled: true,
+            format: $('#updated-format').val()
         } : undefined
     };
 };
@@ -52,6 +61,8 @@ var document_ready = function (event) {
     // Set default value.
     $('#blogurl').val(DEFAULT_BLOG_URL);
     $('#thumbnail-noimageurl').val(DEFAULT_NOIMAGE_URL);
+    $('#published-format').val(DEFAULT_DATETIME_FORMAT);
+    $('#updated-format').val(DEFAULT_DATETIME_FORMAT);
 
     // Attache event handlers.
     $('#blogurl').on(
@@ -59,11 +70,23 @@ var document_ready = function (event) {
     ).on(
         'blur', { placeholder: DEFAULT_BLOG_URL }, textbox_onblur
     );
-    $('#thumbnail-enabled').on('change', thumbnailcheckbox_onchange);
+    $('#thumbnail-enabled').on('change', { target: '#thumbnailopt' }, checkbox_onchange);
     $('#thumbnail-noimageurl').on(
         'focus', { placeholder: DEFAULT_NOIMAGE_URL }, textbox_onfocus
     ).on(
         'blur', { placeholder: DEFAULT_NOIMAGE_URL }, textbox_onblur
+    );
+    $('#published-enabled').on('change', { target: '#published' }, checkbox_onchange);
+    $('#published-format').on(
+        'focus', { placeholder: DEFAULT_DATETIME_FORMAT }, textbox_onfocus
+    ).on(
+        'blur', { placeholder: DEFAULT_DATETIME_FORMAT }, textbox_onblur
+    );
+    $('#updated-enabled').on('change', { target: '#updated' }, checkbox_onchange);
+    $('#updated-format').on(
+        'focus', { placeholder: DEFAULT_DATETIME_FORMAT }, textbox_onfocus
+    ).on(
+        'blur', { placeholder: DEFAULT_DATETIME_FORMAT }, textbox_onblur
     );
     $('#opnbtn').on('click', openbutton_onclick);
     $('#code').on('click', code_onclick);
@@ -90,8 +113,9 @@ var textbox_onblur = function (event) {
 };
 
 
-var thumbnailcheckbox_onchange = function (event) {
-    $('#thumbnailopt').toggle();
+var checkbox_onchange = function (event) {
+    var target = event.data.target;
+    $(target).toggle();
 };
 
 
