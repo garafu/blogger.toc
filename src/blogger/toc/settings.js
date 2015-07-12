@@ -21,7 +21,7 @@ garafu.blogger.toc.Settings = function () {
         printby: 'label',
         thumbnail: {
             enabled: false,
-            noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.4/noimage.png'
+            noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
         }
     };
 
