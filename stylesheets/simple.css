@@ -19,14 +19,18 @@
 }
 #main .poststoc-item
 {
+    margin: 2px 0;
 }
 #main .poststoc-entry
 {
 }
+#main .poststoc-entry span
+{
+    margin: 2px 4px;
+}
 #main .poststoc-thumbnail
 {
     display: inline-block;
-    margin: 2px 4px;
 }
 #main .poststoc-thumbnail-image
 {
@@ -43,14 +47,13 @@
 }
 #main .poststoc-published
 {
-    display: none;
 }
 #main .poststoc-updated
 {
-    display: none;
 }
 #main .poststoc-title
 {
+    margin-left: 4px;
     text-decoration: none;
     color: #2288bb;
 }

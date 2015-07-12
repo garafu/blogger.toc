@@ -1,5 +1,7 @@
 goog.provide('garafu.blogger.toc.Settings');
 
+goog.require('garafu.i18n.DateTimeFormat');
+
 
 
 
@@ -12,21 +14,35 @@ goog.provide('garafu.blogger.toc.Settings');
 * @constructor
 */
 garafu.blogger.toc.Settings = function () {
+    var defaultSettings;
 
     // Set default settings.
-    var defaultSettings = {
+    defaultSettings = {
         blogURL: 'garafu.blogspot.jp',
         maxResults: Infinity,
         orderby: 'published',
         printby: 'label',
+        locale: 'ja-jp',
         thumbnail: {
             enabled: false,
             noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
+        },
+        published: {
+            enabled: false,
+            format: 'yyyy/MM/dd HH:mm:ss'
+        },
+        updated: {
+            enabled: false,
+            format: 'yyyy/MM/dd HH:mm:ss'
         }
     };
 
     // Apply user settings or default settings.
     this.merge(this, POSTSTOC_SETTINGS, defaultSettings);
+
+    // Set date time formatter.
+    this.published.format = new garafu.i18n.DateTimeFormat(this.published.format, this.locale);
+    this.updated.format = new garafu.i18n.DateTimeFormat(this.updated.format, this.locale);
 };
 
 

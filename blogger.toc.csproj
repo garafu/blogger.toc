@@ -87,22 +87,25 @@
     <Content Include="MIT-LICENSE.txt" />
     <Content Include="src\blogger\toc\contract.js" />
     <Content Include="src\blogger\toc\main.js" />
-    <Content Include="src\blogger\toc\printer\abstractprinter.js" />
-    <Content Include="src\blogger\toc\printer\category.js" />
-    <Content Include="src\blogger\toc\printer\entry.js" />
-    <Content Include="src\blogger\toc\printer\labelcontentsorderprinter.js" />
-    <Content Include="src\blogger\toc\printer\labelnameorderprinter.js" />
-    <Content Include="src\blogger\toc\printer\labelprinter.js" />
-    <Content Include="src\blogger\toc\printer\titleprinter.js" />
+    <Content Include="src\blogger\toc\printer\AbstractPrinter.js" />
+    <Content Include="src\blogger\toc\printer\Category.js" />
+    <Content Include="src\blogger\toc\printer\Entry.js" />
+    <Content Include="src\blogger\toc\printer\LabelContentsOrderPrinter.js" />
+    <Content Include="src\blogger\toc\printer\LabelNameOrderPrinter.js" />
+    <Content Include="src\blogger\toc\printer\LabelPrinter.js" />
+    <Content Include="src\blogger\toc\printer\TitlePrinter.js" />
     <Content Include="src\blogger\toc\settings.js" />
-    <Content Include="src\blogger\toc\sorter\abstractsorter.js" />
-    <Content Include="src\blogger\toc\sorter\publisheddatesorter.js" />
-    <Content Include="src\blogger\toc\sorter\titlenamesorter.js" />
-    <Content Include="src\blogger\toc\sorter\updateddatesorter.js" />
+    <Content Include="src\blogger\toc\sorter\AbstractSorter.js" />
+    <Content Include="src\blogger\toc\sorter\PublishedDateSorter.js" />
+    <Content Include="src\blogger\toc\sorter\TitleNameSorter.js" />
+    <Content Include="src\blogger\toc\sorter\UpdatedDateSorter.js" />
     <Content Include="src\date\W3CDTF.js" />
     <Content Include="src\deps.js" />
     <Content Include="src\dom\dom.js" />
     <Content Include="src\events\events.js" />
+    <Content Include="src\i18n\DateTimeFormat.js" />
+    <Content Include="src\i18n\DateTimeSymbols.js" />
+    <Content Include="src\string\string.js" />
     <Content Include="stylesheets\simple.css" />
     <Content Include="stylesheets\tile_emerald.css" />
     <Content Include="stylesheets\tile_steel.css" />
@@ -165,7 +168,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir)build.bat</PreBuildEvent>
+    <PreBuildEvent>$(ProjectDir)createDepsJs.bat
+$(ProjectDir)build.bat</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

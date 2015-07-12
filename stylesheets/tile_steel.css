@@ -1,7 +1,7 @@
 #main .poststoc
 {
     font-size: 12px;
-    font-family: Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
 }
 #main .poststoc-category
 {
@@ -41,11 +41,17 @@
 #main .poststoc-entry
 {
     padding-left: 10px;
+    vertical-align: top;
+}
+#main .poststoc-entry span {
+    vertical-align: top;
+    margin: 2px 4px;
 }
 #main .poststoc-thumbnail
 {
     display: inline-block;
-    margin: 2px 4px;
+    position: relative;
+    top: -8px;
 }
 #main .poststoc-thumbnail-image
 {
@@ -62,14 +68,13 @@
 }
 #main .poststoc-published
 {
-    display: none;
 }
 #main .poststoc-updated
 {
-    display: none;
 }
 #main .poststoc-title
 {
+    margin-left: 4px;
     text-decoration: none;
     color: #2288bb;
 }

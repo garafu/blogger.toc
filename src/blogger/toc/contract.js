@@ -125,11 +125,19 @@ var contract = {
 var POSTSTOC_SETTINGS = {
     blogURL: '',
     maxResults: Infinity,
-    style: '',
     orderby: '',
     printby: '',
+    locale: '',
     thumbnail: {
         enabled: false,
         noImageURL: ''
+    },
+    published: {
+        enabled: false,
+        format: ''
+    },
+    updated: {
+        enabled: false,
+        format: ''
     }
 };

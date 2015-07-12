@@ -1,5 +1,7 @@
 goog.provide('garafu.blogger.toc.printer.Entry');
 
+goog.require('garafu.date.W3CDTF');
+
 
 
 
@@ -62,7 +64,7 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     var updated = document.createElement('span');
     var thumbnail = document.createElement('span');
     var title = document.createElement('a');
-    var img;
+    var datetime, text, img;
 
     // Create thumbnail
     if (settings.thumbnail.enabled) {
@@ -71,12 +73,20 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     }
 
     // Create published date
-    published.appendChild(document.createTextNode(entry.published.$t));
-    published.className = 'poststoc-published';
+    if (settings.published.enabled) {
+        datetime = garafu.date.W3CDTF.parse(entry.published.$t);
+        text = settings.published.format.format(datetime);
+        published.appendChild(document.createTextNode(text));
+        published.className = 'poststoc-published';
+    }
 
     // Create update date
-    updated.appendChild(document.createTextNode(entry.updated.$t));
-    updated.className = 'poststoc-updated';
+    if (settings.updated.enabled) {
+        datetime = garafu.date.W3CDTF.parse(entry.updated.$t);
+        text = settings.updated.format.format(datetime);
+        updated.appendChild(document.createTextNode(text));
+        updated.className = 'poststoc-updated';
+    }
 
     // Create title
     title.appendChild(document.createTextNode(entry.title.$t));
@@ -87,8 +97,12 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     if (settings.thumbnail.enabled) {
         container.appendChild(thumbnail);
     }
-    container.appendChild(published);
-    container.appendChild(updated);
+    if (settings.published.enabled) {
+        container.appendChild(published);
+    }
+    if (settings.updated.enabled) {
+        container.appendChild(updated);
+    }
     container.appendChild(title);
     container.className = 'poststoc-entry';
 
