@@ -28,6 +28,7 @@ goog.require('garafu.events');
 // --------------------------------------------------------------------------------
 //  constructor
 // --------------------------------------------------------------------------------
+
 /**
 * @class
 *
@@ -93,6 +94,7 @@ garafu.blogger.toc.Main._data = contract;
 // --------------------------------------------------------------------------------
 //  static method
 // --------------------------------------------------------------------------------
+
 /**
 * Callback when feed data has been recieved.
 *
@@ -138,6 +140,7 @@ garafu.blogger.toc.Main.load = function (data) {
 // --------------------------------------------------------------------------------
 //  method
 // --------------------------------------------------------------------------------
+
 /**
 * Get the singleton instance.
 *
@@ -282,7 +285,10 @@ garafu.blogger.toc.Main.prototype.print = function (data) {
 
 
 /**
+* Create footer license element.
 *
+* @private
+* @return   {DOMElement}    
 */
 garafu.blogger.toc.Main.prototype.createLicenseElement = function () {
     var container = document.createElement('div');

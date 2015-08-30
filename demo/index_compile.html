@@ -4,11 +4,6 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../stylesheets/simple.css" />
-    <style>
-        #main .poststoc-list {
-            list-style-type: decimal;
-        }
-    </style>
 </head>
 <body>
 <div>
@@ -18,11 +13,12 @@
     var POSTSTOC_SETTINGS = {
         blogURL: 'garafu.blogspot.jp',
         sort: {
-            key: 'published'
+            key: 'title',
+            order: 'asc'
         },
         printby: 'title',
         thumbnail: {
-            enabled: false
+            enabled: true
         },
         published: {
             enabled: true,

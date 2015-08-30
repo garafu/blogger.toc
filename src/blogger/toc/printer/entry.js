@@ -15,9 +15,11 @@ goog.require('garafu.date.W3CDTF');
 //  constructor
 // --------------------------------------------------------------------------------
 /**
+* @class
 * @public
 * @constructor
-* @class
+* @param    {garafu.blogger.toc.Settings}   settings    Settings object.
+* @param    {feed.entry}                    entry       Feed entry data.
 */
 garafu.blogger.toc.printer.Entry = function (settings, entry) {
     // Properties.
@@ -39,6 +41,7 @@ garafu.blogger.toc.printer.Entry = function (settings, entry) {
 // --------------------------------------------------------------------------------
 /**
 * Get entry name.
+*
 * @public
 */
 garafu.blogger.toc.printer.Entry.prototype.getName = function () {
@@ -50,6 +53,7 @@ garafu.blogger.toc.printer.Entry.prototype.getName = function () {
 
 /**
 * Get the root DOM element of this category.
+*
 * @public
 */
 garafu.blogger.toc.printer.Entry.prototype.getRootElement = function () {
@@ -118,6 +122,12 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
 
 
 
+
+/**
+* @private
+* @param    {feed.entry.media$thumbnail}    Thumbnail data.
+* @return   {DOMElement}    Thumbnail image DOM element.
+*/
 garafu.blogger.toc.printer.Entry.prototype.createThumbnailElement = function (media) {
     var img = document.createElement('img');
 

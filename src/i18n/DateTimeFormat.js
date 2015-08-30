@@ -11,10 +11,10 @@ goog.require('garafu.string');
 
 
 
+
 // -------------------------------------------------------------------------------------------------
 //      constructor
 // -------------------------------------------------------------------------------------------------
-
 
 /**
 * Initialize a new instance of the DateFormat class.
@@ -71,6 +71,8 @@ garafu.i18n.DateTimeFormat = function (pattern, locale) {
 };
 
 
+
+
 // -------------------------------------------------------------------------------------------------
 //      enum
 // -------------------------------------------------------------------------------------------------
@@ -114,6 +116,7 @@ garafu.i18n.DateTimeFormat.Format = {
 
 
 
+
 /**
 * Enum of field type.
 * <ul>
@@ -131,8 +134,10 @@ garafu.i18n.DateTimeFormat.PatternType = {
 };
 
 
+
+
 // -------------------------------------------------------------------------------------------------
-//      methods
+//      method
 // -------------------------------------------------------------------------------------------------
 
 /**
@@ -161,6 +166,8 @@ garafu.i18n.DateTimeFormat.prototype.format = function (date) {
 };
 
 
+
+
 /**
 * 
 * @private
@@ -184,6 +191,8 @@ garafu.i18n.DateTimeFormat.prototype.getStandardPattern = function (formatType) 
 };
 
 
+
+
 /**
 * Initialize this instance. Create and set formatt pattern string array.
 *
@@ -194,6 +203,8 @@ garafu.i18n.DateTimeFormat.prototype.initialize = function () {
 
     this.patternParts = parts;
 };
+
+
 
 
 /**

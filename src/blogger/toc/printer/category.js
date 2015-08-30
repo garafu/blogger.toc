@@ -13,9 +13,11 @@ goog.provide('garafu.blogger.toc.printer.Category');
 //  constructor
 // --------------------------------------------------------------------------------
 /**
+* @class
 * @public
 * @constructor
-* @class
+* @param    {garafu.blogger.toc.Settings}   settings    Settings object.
+* @param    {feed.category}                 category    Feed category data.
 */
 garafu.blogger.toc.printer.Category = function (settings, category) {
     // Properties.
@@ -37,9 +39,9 @@ garafu.blogger.toc.printer.Category = function (settings, category) {
 // --------------------------------------------------------------------------------
 //  method
 // --------------------------------------------------------------------------------
-
 /**
 * Get category name.
+*
 * @public
 */
 garafu.blogger.toc.printer.Category.prototype.getName = function () {
@@ -51,6 +53,7 @@ garafu.blogger.toc.printer.Category.prototype.getName = function () {
 
 /**
 * Get the root DOM element of this category.
+*
 * @public
 */
 garafu.blogger.toc.printer.Category.prototype.getRootElement = function () {
@@ -62,6 +65,7 @@ garafu.blogger.toc.printer.Category.prototype.getRootElement = function () {
 
 /**
 * Get the number of appended entries.
+*
 * @public
 */
 garafu.blogger.toc.printer.Category.prototype.getEntryCounts = function () {
@@ -73,7 +77,9 @@ garafu.blogger.toc.printer.Category.prototype.getEntryCounts = function () {
 
 /**
 * Append specific entry to the end of this category.
+*
 * @public
+* @param    {garafu.blogger.toc.printer.Entry}  entry   Entry object.
 */
 garafu.blogger.toc.printer.Category.prototype.addEntry = function (entry) {
     var entryElement = entry.getRootElement();
@@ -90,6 +96,8 @@ garafu.blogger.toc.printer.Category.prototype.addEntry = function (entry) {
 
 
 /**
+* Initialize this instance.
+*
 * @private
 */
 garafu.blogger.toc.printer.Category.prototype.initialize = function () {

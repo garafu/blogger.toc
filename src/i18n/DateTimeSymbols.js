@@ -9,6 +9,10 @@ goog.provide('garafu.i18n.DateTimeSymbols');
 
 
 
+// --------------------------------------------------------------------------------
+//  constructor
+// --------------------------------------------------------------------------------
+
 /**
 * Initialize a new instance of the DateTimeSymbols class.
 *
@@ -35,6 +39,8 @@ garafu.i18n.DateTimeSymbols = function (locale) {
 };
 
 
+
+
 /**
 * Date/time formatting symbols for locale "en-us".
 */
@@ -48,6 +54,7 @@ garafu.i18n.DateTimeSymbols.en_us = {
     DATEFORMATS: ['EEEE dd MMMM y', 'dd MMMM y', 'dd MMM y', 'yyyy/MM/dd'],
     TIMEFORMATS: ['h:mm:ss t zzzz', 'h:mm:ss t z', 'h:mm:ss t', 'h:mm t']
 };
+
 
 
 

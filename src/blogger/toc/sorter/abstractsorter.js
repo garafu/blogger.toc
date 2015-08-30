@@ -13,9 +13,10 @@ goog.provide('garafu.blogger.toc.sorter.AbstractSorter');
 //  constructor
 // --------------------------------------------------------------------------------
 /**
-* @putlic
-* @constructor
 * @class
+* @public
+* @constructor
+* @param    {garafu.blogger.toc.Settings}   settings    Settings object.
 */
 garafu.blogger.toc.sorter.AbstractSorter = function (settings) {
     this._settings = settings;
@@ -40,7 +41,6 @@ garafu.blogger.toc.sorter.AbstractSorter.prototype.getOrderByValue = function ()
 
 /**
 * Execute process of sorting entry.
-*
 * @public
 * @param    {object}    feed    JSON object of Blogger feed.
 */

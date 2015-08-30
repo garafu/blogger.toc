@@ -34,6 +34,8 @@ goog.inherits(garafu.blogger.toc.printer.LabelPrinter, garafu.blogger.toc.printe
 // --------------------------------------------------------------------------------
 /**
 * @public
+* @param    {feed}  feed    Original feed data.
+* @return   {DOMElement}    Root DOM element.
 */
 garafu.blogger.toc.printer.LabelPrinter.prototype.execute = function (feed) {
     var settings = this._settings;
@@ -85,9 +87,12 @@ garafu.blogger.toc.printer.LabelPrinter.prototype.execute = function (feed) {
 
 
 
+
 /**
 * Sort category name list.
 * @public
+* @param    {garafu.blogger.toc.printer.Category[]}     originalList    Category list.
+* @return   {garafu.blogger.toc.printer.Category[]}     Sorted list.
 */
 garafu.blogger.toc.printer.LabelPrinter.prototype.sort = function (originalList) {
     return originalList;

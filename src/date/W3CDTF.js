@@ -11,6 +11,10 @@ goog.require('garafu.string');
 
 
 
+// --------------------------------------------------------------------------------
+//  static property
+// --------------------------------------------------------------------------------
+
 /**
 * Regular expression for dividing W3C-DTF string.
 *
@@ -18,6 +22,8 @@ goog.require('garafu.string');
 * @type {RegExp}
 */
 garafu.date.W3CDTF.regexp = /^(\d{4})-?(\d{2})?-?(\d{2})?T?(\d{2})?:?(\d{2})?:?(\d{2})?(\.\d+)?(\+|-|Z)?(\d{2})?:?(\d{2})?$/;
+
+
 
 
 /**
@@ -34,6 +40,12 @@ garafu.date.W3CDTF.FormatType = {
     YYYYMMDD_hhmmsssTZD: 6
 };
 
+
+
+
+// --------------------------------------------------------------------------------
+//  static method
+// --------------------------------------------------------------------------------
 
 /**
 * Convert W3C-DTF string to Date object.
@@ -83,6 +95,8 @@ garafu.date.W3CDTF.parse = function (text) {
     
     return date;
 };
+
+
 
 
 /**

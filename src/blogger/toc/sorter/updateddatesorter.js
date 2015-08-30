@@ -16,9 +16,10 @@ goog.require('garafu.blogger.toc.sorter.SortOrder');
 //  constructor
 // --------------------------------------------------------------------------------
 /**
-* @putlic
-* @constructor
 * @class
+* @public
+* @constructor
+* @param    {garafu.blogger.toc.Settings}   settings    Settings object.
 */
 garafu.blogger.toc.sorter.UpdatedDateSorter = function (settings) {
     goog.base(this, settings);
