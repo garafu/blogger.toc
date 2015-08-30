@@ -1,0 +1,66 @@
+#main .poststoc
+{
+    font-size: 12px;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+}
+#main .poststoc-category
+{
+    /*border-bottom: 1px solid #efefef;*/
+}
+#main .poststoc-category-title
+{
+    padding: 0.5em 0 0.5em 0.8em;
+    /*border-bottom: 1px solid #ebebeb;*/
+    /*border-top: 1px solid #efefef;*/
+    /*box-shadow: 0 1px 1px #efefef;*/
+}
+#main .poststoc-list
+{
+}
+#main .poststoc-item
+{
+    margin: 2px 0;
+}
+#main .poststoc-entry
+{
+}
+#main .poststoc-entry span
+{
+    margin: 2px 4px;
+}
+#main .poststoc-thumbnail
+{
+    display: inline-block;
+}
+#main .poststoc-thumbnail-image
+{
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-thumbnail-noimage
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-published
+{
+}
+#main .poststoc-updated
+{
+}
+#main .poststoc-title
+{
+    margin-left: 4px;
+    text-decoration: none;
+    color: #2288bb;
+}
+#main .poststoc-title:hover
+{
+    text-decoration: underline;
+}
+#main .poststoc-title:visited
+{
+}

@@ -7,7 +7,10 @@ var DEFAULT_DATETIME_FORMAT = 'yyyy/MM/dd HH:mm:ss';
 var createSettings = function () {
     return {
         blogURL: $('#blogurl').val(),
-        orderby: $('#sortorder').val(),
+        sort: {
+            key: $('#sortkey').val(),
+            order: $('#sortorder').val()
+        },
         printby: $('#printtype').val(),
         thumbnail: $('#thumbnail-enabled').prop('checked') ? {
             enabled: true,
@@ -45,6 +48,7 @@ var generateSourceCode = function () {
     code += '&lt;script type="text/javascript"&gt;\r\n';
     code += 'var POSTSTOC_SETTINGS = '
     code += JSON.stringify(settings);
+    code += '\r\n';
     code += '&lt;/script&gt;\r\n';
 
     // Create stylesheet link.

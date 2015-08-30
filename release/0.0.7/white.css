@@ -1,0 +1,43 @@
+#main .poststoc-category-title
+{
+}
+#main .poststoc-list
+{
+}
+#main .poststoc-item
+{
+}
+#main .poststoc-entry
+{
+}
+#main .poststoc-thumbnail
+{
+    display: inline-block;
+    margin: 2px 4px;
+}
+#main .poststoc-thumbnail-image
+{
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-thumbnail-noimage
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-published
+{
+    font-size: x-small;
+    margin-right: 1em;
+}
+#main .poststoc-updated
+{
+    display: none;
+}
+#main .poststoc-title
+{
+}
+
