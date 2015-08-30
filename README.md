@@ -54,7 +54,7 @@ Create `POSTSTOC_SETTINGS` object and sets options, if you want to customize `bl
 For details of options are following.
 
 |property|type|description|
-|--|--|--|
+|-----|-----|-----|
 |`blogURL`|`string`|Your blog domain name.|
 |`sort.key`|`enum`|Choose [`title`, `published`, `updated`].|
 |`sort.order`|`enum`|Choose [`default`, `asc`, `desc`].|
