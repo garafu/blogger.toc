@@ -1,22 +1,28 @@
 ﻿/********************************************************************************
 *
-*         AbstractPrinter class
+*         SortOrder enumeration
 *
 *   description : 
 *********************************************************************************/
-goog.provide('garafu.blogger.toc.printer.AbstractPrinter');
+goog.provide('garafu.blogger.toc.sorter.SortOrder');
 
 
 
 
 // --------------------------------------------------------------------------------
-//  garafu.blogger.toc.PretyPrint class
+//  enumeration
 // --------------------------------------------------------------------------------
 /**
+* Sort order enumeration.
+*
 * @public
-* @constructor
-* @class
+* @enum
 */
-garafu.blogger.toc.printer.AbstractPrinter = function (settings) {
-    this._settings = settings;
+garafu.blogger.toc.sorter.SortOrder = {
+    DEFAULT: 'default',
+    ASC: 'asc',
+    DESC: 'desc'
 };
+
+
+

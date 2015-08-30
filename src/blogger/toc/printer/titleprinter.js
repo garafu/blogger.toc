@@ -1,3 +1,9 @@
+﻿/********************************************************************************
+*
+*         TitlePrinter class
+*
+*   description : 
+*********************************************************************************/
 goog.provide('garafu.blogger.toc.printer.TitlePrinter');
 
 goog.require('garafu.blogger.toc.printer.AbstractPrinter');

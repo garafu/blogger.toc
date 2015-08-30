@@ -1,9 +1,15 @@
-/**
-* Copyright (c) 2013 akinari tsugo
-* This script released under the MIT license (MIT-LICENSE.txt).
-*/
+﻿/********************************************************************************
+*
+*         Main class
+*
+*   description : Main class is entry point of this project.
+*                 This script released under the MIT license (MIT-LICENSE.txt).
+*   copyright   : Copyright (c) 2013 akinari tsugo
+*   license     : MIT
+*********************************************************************************/
 goog.provide('garafu.blogger.toc.Main');
 
+goog.require('garafu.blogger.toc.sorter.SortKey');
 goog.require('garafu.blogger.toc.sorter.PublishedDateSorter');
 goog.require('garafu.blogger.toc.sorter.TitleNameSorter');
 goog.require('garafu.blogger.toc.sorter.UpdatedDateSorter');
@@ -305,15 +311,16 @@ garafu.blogger.toc.Main.prototype.createLicenseElement = function () {
 * @return   {garafu.blogger.toc.AbstractSorter}     Concreate Sorter instance.
 */
 garafu.blogger.toc.Main.prototype.createSorter = function () {
+    var SortKey = garafu.blogger.toc.sorter.SortKey;
     var settings = this._settings;
-    var orderby = settings.orderby;
+    var orderby = settings.sort.key;
     
     switch (orderby.toLowerCase()) {
-        case 'published':
+        case SortKey.PUBLISHED:
             return new garafu.blogger.toc.sorter.PublishedDateSorter(settings);
-        case 'updated':
+        case SortKey.UPDATED:
             return new garafu.blogger.toc.sorter.UpdatedDateSorter(settings);
-        case 'title':
+        case SortKey.TITLE:
             return new garafu.blogger.toc.sorter.TitleNameSorter(settings);
         default:
             return new garafu.blogger.toc.sorter.PublishedDateSorter(settings);

@@ -96,6 +96,8 @@
     <Content Include="src\blogger\toc\printer\TitlePrinter.js" />
     <Content Include="src\blogger\toc\settings.js" />
     <Content Include="src\blogger\toc\sorter\AbstractSorter.js" />
+    <Content Include="src\blogger\toc\sorter\SortOrder.js" />
+    <Content Include="src\blogger\toc\sorter\SortKey.js" />
     <Content Include="src\blogger\toc\sorter\PublishedDateSorter.js" />
     <Content Include="src\blogger\toc\sorter\TitleNameSorter.js" />
     <Content Include="src\blogger\toc\sorter\UpdatedDateSorter.js" />

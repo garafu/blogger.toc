@@ -1,3 +1,9 @@
+﻿/********************************************************************************
+*
+*         AbstractSorter class
+*
+*   description : 
+*********************************************************************************/
 goog.provide('garafu.blogger.toc.sorter.AbstractSorter');
 
 
@@ -33,7 +39,11 @@ garafu.blogger.toc.sorter.AbstractSorter.prototype.getOrderByValue = function ()
 
 
 /**
+* Execute process of sorting entry.
+*
 * @public
+* @param    {object}    feed    JSON object of Blogger feed.
 */
 garafu.blogger.toc.sorter.AbstractSorter.prototype.execute = function (feed) {
+    // NOTE: Implement actual sorting process into the method of inherited class.
 };

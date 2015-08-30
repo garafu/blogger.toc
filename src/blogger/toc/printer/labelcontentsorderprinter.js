@@ -1,3 +1,9 @@
+﻿/********************************************************************************
+*
+*         LabelContentsOrderPrinter class
+*
+*   description : 
+*********************************************************************************/
 goog.provide('garafu.blogger.toc.printer.LabelContentsOrderPrinter');
 
 goog.require('garafu.blogger.toc.printer.LabelPrinter');

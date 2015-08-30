@@ -1,22 +1,28 @@
 ﻿/********************************************************************************
 *
-*         AbstractPrinter class
+*         SortKey enumeration
 *
 *   description : 
 *********************************************************************************/
-goog.provide('garafu.blogger.toc.printer.AbstractPrinter');
+goog.provide('garafu.blogger.toc.sorter.SortKey');
 
 
 
 
 // --------------------------------------------------------------------------------
-//  garafu.blogger.toc.PretyPrint class
+//  enum
 // --------------------------------------------------------------------------------
 /**
+* Sort key enumeration.
+*
 * @public
-* @constructor
-* @class
+* @enum
 */
-garafu.blogger.toc.printer.AbstractPrinter = function (settings) {
-    this._settings = settings;
+garafu.blogger.toc.sorter.SortKey = {
+    PUBLISHED: 'published',
+    UPDATED: 'updated',
+    TITLE: 'title'
 };
+
+
+

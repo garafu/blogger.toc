@@ -1,3 +1,10 @@
+﻿/********************************************************************************
+*
+*         contracts
+*
+*   description : This file includes contracts object.
+*********************************************************************************/
+
 /**
 * Data contract.
 */
@@ -122,10 +129,17 @@ var contract = {
     }
 };
 
+/**
+* Settings contract.
+*/
 var POSTSTOC_SETTINGS = {
     blogURL: '',
     maxResults: Infinity,
-    orderby: '',
+    sort: {
+        key: '',
+        order: ''
+    },
+    orderby: '',    // [obsolete] Reccomend to use "sort" option.
     printby: '',
     locale: '',
     thumbnail: {

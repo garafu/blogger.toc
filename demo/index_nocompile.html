@@ -12,18 +12,21 @@
     <script type="text/javascript">
     var POSTSTOC_SETTINGS = {
         blogURL: 'garafu.blogspot.jp',
-        orderby: 'published',
-        printby: 'label.contentsorder',
+        sort: {
+            key: 'title',
+            order: 'asc'
+        },
+        printby: 'title',
         thumbnail: {
             enabled: false
         },
         published: {
             enabled: true,
-            format: 'yyyy/MM/dd'
+            format: 'yyyy/MM/dd HH:mm:ss'
         },
         updated: {
             enabled: true,
-            format: 'yyyy/MM/dd'
+            format: 'yyyy/MM/dd HH:mm:ss'
         }
     };
     </script>

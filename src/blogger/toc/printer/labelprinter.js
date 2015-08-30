@@ -1,3 +1,9 @@
+﻿/********************************************************************************
+*
+*         LabelPrinter class
+*
+*   description : 
+*********************************************************************************/
 goog.provide('garafu.blogger.toc.printer.LabelPrinter');
 
 goog.require('garafu.blogger.toc.printer.AbstractPrinter');
