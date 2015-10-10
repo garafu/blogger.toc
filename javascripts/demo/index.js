@@ -2,6 +2,8 @@
 var DEFAULT_BLOG_URL = 'garafu.blogspot.jp';
 var DEFAULT_NOIMAGE_URL = 'http://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/noimage.png';
 var DEFAULT_DATETIME_FORMAT = 'yyyy/MM/dd HH:mm:ss';
+var DEFAULT_NEWPOST_SYMBOL = 'NEW !';
+var DEFAULT_NEWPOST_TERM = '30';
 
 
 var createSettings = function () {
@@ -23,6 +25,12 @@ var createSettings = function () {
         updated: $('#updated-enabled').prop('checked') ? {
             enabled: true,
             format: $('#updated-format').val()
+        } : undefined,
+        newPost: $('#newpost-enabled').prop('checked') ? {
+            enabled: true,
+            symbol: $('#newpost-symbol').val(),
+            term: parseInt($('#newpost-term').val()),
+            target: $('#newpost-target').val()
         } : undefined
     };
 };
@@ -92,6 +100,17 @@ var document_ready = function (event) {
     ).on(
         'blur', { placeholder: DEFAULT_DATETIME_FORMAT }, textbox_onblur
     );
+    $('#newpost-enabled').on('change', { target: '#newpost' }, checkbox_onchange);
+    $('#newpost-symbol').on(
+        'focus', { placeholder: DEFAULT_NEWPOST_SYMBOL }, textbox_onfocus
+    ).on(
+        'blur', { placeholder: DEFAULT_NEWPOST_SYMBOL }, textbox_onblur
+    );
+    $('#newpost-term').on(
+        'focus', { placeholder: DEFAULT_NEWPOST_TERM }, textbox_onfocus
+    ).on(
+        'blur', { placeholder: DEFAULT_NEWPOST_TERM }, textbox_onblur
+    );
     $('#opnbtn').on('click', openbutton_onclick);
     $('#code').on('click', code_onclick);
 };
@@ -119,6 +138,7 @@ var textbox_onblur = function (event) {
 
 var checkbox_onchange = function (event) {
     var target = event.data.target;
+
     $(target).toggle();
 };
 
