@@ -1,7 +1,7 @@
 #main .poststoc
 {
-    font-size: 12px;
-    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    /*font-size: 12px;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;*/
 }
 #main .poststoc-category
 {
@@ -84,4 +84,9 @@
 }
 #main .poststoc-title:visited
 {
+}
+#main .poststoc-new
+{
+    color: #eb2142;
+    font-weight: bold;
 }

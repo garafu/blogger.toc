@@ -1,7 +1,8 @@
 #main .poststoc
 {
-    font-size: 12px;
-    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+    /*font-size: 12px;
+    font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;*/
+    color: #383838;
 }
 #main .poststoc-category
 {
@@ -10,14 +11,14 @@
 {
     line-height: 30px;
     height: 30px;
-    border-left: 30px solid #008A00;
+    border-left: 30px solid #79d1b0;
     margin: 20px 0;
     padding-left: 10px;
 }
 #main .poststoc-category-anchor
 {
     text-decoration: none;
-    color: #008A00;
+    color: #79d1b0;
 }
 #main .poststoc-category-anchor:hover
 {
@@ -30,13 +31,14 @@
 #main .poststoc-list
 {
     list-style: none;
+    margin-bottom: 60px;
 }
 #main .poststoc-item
 {
     line-height: 20px;
     height: 20px;
     margin: 10px 0;
-    border-left: 20px solid #dfffdf;
+    border-left: 20px solid #79d1b0;
 }
 #main .poststoc-entry
 {
@@ -76,7 +78,7 @@
 {
     margin-left: 4px;
     text-decoration: none;
-    color: #2288bb;
+    color: #5ebaba;
 }
 #main .poststoc-title:hover
 {
@@ -84,4 +86,9 @@
 }
 #main .poststoc-title:visited
 {
+}
+#main .poststoc-new
+{
+    color: #eb2142;
+    font-weight: bold;
 }

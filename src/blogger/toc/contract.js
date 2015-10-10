@@ -145,6 +145,12 @@ var POSTSTOC_SETTINGS = {
     orderby: '',    // [obsolete] Reccomend to use "sort" option.
     printby: '',
     locale: '',
+    newPost: {
+        enabled: false,
+        symbol: '',
+        term: 0,
+        target: ''
+    },
     thumbnail: {
         enabled: false,
         noImageURL: ''

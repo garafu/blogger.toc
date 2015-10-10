@@ -69,52 +69,56 @@ garafu.blogger.toc.printer.Entry.prototype.getRootElement = function () {
 garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     var settings = this._settings;
     var entry = this._data;
-    var container = document.createElement('span');
-    var published = document.createElement('span');
-    var updated = document.createElement('span');
-    var thumbnail = document.createElement('span');
-    var title = document.createElement('a');
-    var datetime, text, img;
+    var container, published, updated, thumbnail, title, newsymbol, datetime, text, img;
+
+    // Create container DOM element.
+    container = document.createElement('span');
+    container.className = 'poststoc-entry';
 
     // Create thumbnail
     if (settings.thumbnail.enabled) {
+        thumbnail = document.createElement('span');
         thumbnail.appendChild(this.createThumbnailElement(entry.media$thumbnail));
         thumbnail.className = 'poststoc-thumbnail';
+        container.appendChild(thumbnail);
     }
 
     // Create published date
     if (settings.published.enabled) {
         datetime = garafu.date.W3CDTF.parse(entry.published.$t);
         text = settings.published.format.format(datetime);
+        published = document.createElement('span');
         published.appendChild(document.createTextNode(text));
         published.className = 'poststoc-published';
+        container.appendChild(published);
     }
 
     // Create update date
     if (settings.updated.enabled) {
+        updated = document.createElement('span');
         datetime = garafu.date.W3CDTF.parse(entry.updated.$t);
         text = settings.updated.format.format(datetime);
         updated.appendChild(document.createTextNode(text));
         updated.className = 'poststoc-updated';
+        container.appendChild(updated);
     }
 
     // Create title
+    title = document.createElement('a');
     title.appendChild(document.createTextNode(entry.title.$t));
     title.href = entry.link[entry.link.length - 1].href;
     title.className = 'poststoc-title';
-
-    // Compose DOM element structure
-    if (settings.thumbnail.enabled) {
-        container.appendChild(thumbnail);
-    }
-    if (settings.published.enabled) {
-        container.appendChild(published);
-    }
-    if (settings.updated.enabled) {
-        container.appendChild(updated);
-    }
     container.appendChild(title);
-    container.className = 'poststoc-entry';
+
+    // Create new symbol
+    if (settings.newPost.enabled &&
+        ((settings.newPost.target === 'published' && garafu.date.W3CDTF.parse(entry.published.$t) > settings.newPost.term) ||
+         (settings.newPost.target === 'updated' && garafu.date.W3CDTF.parse(entry.updated.$t) > settings.newPost.term))) {
+        newsymbol = document.createElement('span');
+        newsymbol.appendChild(document.createTextNode(settings.newPost.symbol));
+        newsymbol.className = 'poststoc-new';
+        container.appendChild(newsymbol);
+    }
 
     // Save to cache.
     this.rootElement = container;

@@ -10,25 +10,29 @@
   <h1>No Compile Mode</h1>
   <div id="main">
     <script type="text/javascript">
-    var POSTSTOC_SETTINGS = {
-        blogURL: 'garafu.blogspot.jp',
-        sort: {
-            key: 'title',
-            order: 'asc'
-        },
-        printby: 'title',
-        thumbnail: {
-            enabled: false
-        },
-        published: {
-            enabled: true,
-            format: 'yyyy/MM/dd HH:mm:ss'
-        },
-        updated: {
-            enabled: true,
-            format: 'yyyy/MM/dd HH:mm:ss'
-        }
-    };
+        var POSTSTOC_SETTINGS = {
+            blogURL: 'garafu.blogspot.jp',
+            sort: {
+                key: 'published',
+                order: 'desc'
+            },
+            printby: 'title',
+            newPost: {
+                enabled: true,
+                term: 30
+            },
+            thumbnail: {
+                enabled: false
+            },
+            published: {
+                enabled: false,
+                format: 'yyyy/MM/dd HH:mm:ss'
+            },
+            updated: {
+                enabled: false,
+                format: 'yyyy/MM/dd HH:mm:ss'
+            }
+        };
     </script>
     <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
     <script type="text/javascript" src="../src/deps.js"></script>

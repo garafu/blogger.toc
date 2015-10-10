@@ -35,6 +35,7 @@ garafu.blogger.toc.Settings = function () {
     // Set date time formatter.
     this.published.format = new garafu.i18n.DateTimeFormat(this.published.format, this.locale);
     this.updated.format = new garafu.i18n.DateTimeFormat(this.updated.format, this.locale);
+    this.newPost.term = new Date((new Date()).getTime() - this.newPost.term * 86400000)
 };
 
 
@@ -60,6 +61,12 @@ garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
         },
         printby: 'label',
         locale: 'ja-jp',
+        newPost: {
+            enabled: false,
+            symbol: 'NEW !',
+            term: 30,
+            target: 'published'
+        },
         thumbnail: {
             enabled: false,
             noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'

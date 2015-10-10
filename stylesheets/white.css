@@ -35,9 +35,14 @@
 }
 #main .poststoc-updated
 {
-    display: none;
+    font-size: x-small;
+    margin-right: 1em;
 }
 #main .poststoc-title
 {
+    margin-right: 1em;
 }
-
+#main .poststoc-new
+{
+    color: #eb2142;
+}
