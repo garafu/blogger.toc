@@ -108,6 +108,7 @@
     <Content Include="src\i18n\DateTimeFormat.js" />
     <Content Include="src\i18n\DateTimeSymbols.js" />
     <Content Include="src\string\string.js" />
+    <Content Include="stylesheets\border.css" />
     <Content Include="stylesheets\simple.css" />
     <Content Include="stylesheets\tile_emerald.css" />
     <Content Include="stylesheets\tile_steel.css" />
