@@ -1,0 +1,73 @@
+#main .poststoc
+{
+}
+#main .poststoc-category
+{
+}
+#main .poststoc-category-title
+{
+    background-color: #f5f3fb;
+    padding: 1em 0 1em 2em;
+    border-top: 1px solid #c0bfc4;
+    border-bottom: 1px solid #c0bfc4;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+#main .poststoc-list
+{
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+#main .poststoc-item
+{
+    padding: 1em 0.5em;
+    border-bottom: 1px solid #c0bfc4;
+}
+#main .poststoc-entry
+{
+}
+#main .poststoc-entry span
+{
+    margin: 0.2em 0.4em;
+}
+#main .poststoc-thumbnail
+{
+    display: inline-block;
+}
+#main .poststoc-thumbnail-image
+{
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-thumbnail-noimage
+{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+#main .poststoc-published
+{
+}
+#main .poststoc-updated
+{
+}
+#main .poststoc-title
+{
+    margin-left: 4px;
+    text-decoration: none;
+    color: #2288bb;
+}
+#main .poststoc-title:hover
+{
+    text-decoration: underline;
+}
+#main .poststoc-title:visited
+{
+}
+#main .poststoc-new
+{
+    color: #eb2142;
+    font-weight: bold;
+}
