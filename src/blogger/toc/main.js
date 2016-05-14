@@ -240,7 +240,7 @@ garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxRe
     var url = '';
     
     // Create request URL.
-    url += 'http:\/\/';
+    url += '\/\/';
     url += settings.blogURL;
     url += '\/feeds\/posts\/summary?';
     url += 'redirect=false&';
