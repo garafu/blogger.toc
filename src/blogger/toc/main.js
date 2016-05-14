@@ -39,7 +39,7 @@ garafu.blogger.toc.Main = function () {
     this._settings = new garafu.blogger.toc.Settings();
     this._sorter = this.createSorter();
     this._printer = this.createPrinter();
-    this.requestedCount = 0;
+    this.receivedCount = 0;
     this.request();
 };
 
@@ -108,16 +108,24 @@ garafu.blogger.toc.Main.load = function (data) {
     // Get singleton instance.
     self = garafu.blogger.toc.Main.getInstance();
     
-    // Merge rcieved data.
+    // Whether the request is first request or not.
     if (!garafu.blogger.toc.Main._data) {
+        // Update receive data.
         garafu.blogger.toc.Main._data = data;
+
+        // Update number of request increment.
+        self._settings.feedReceiveIncrementNumber = data.feed.entry.length;
     } else if (data.feed.entry && data.feed.entry.length != 0) {
+        // Merge receive data.
         origin = garafu.blogger.toc.Main._data.feed.entry;
         additional = data.feed.entry;
         merged = origin.concat(additional);
         garafu.blogger.toc.Main._data.feed.entry = merged;
     }
     
+    // Update receive count.
+    self.receivedCount += (data.feed.entry || []).length;
+
     // Whether need to additional request.
     if (!self.isAllReceived(data)) {
         // Request additional data.
@@ -169,9 +177,16 @@ garafu.blogger.toc.Main.getInstance = function () {
 * @return   {boolean}   The value indicating whether the all feed data has been recieved.
 */
 garafu.blogger.toc.Main.prototype.isAllReceived = function (data) {
-    return (this._settings.maxResults <= this.requestedCount ||
-            !data.feed.entry ||
-            (data.feed.entry && data.feed.entry.length === 0))
+    var settings = this._settings;
+    var length = (data.feed.entry || []).length;
+
+    return ((settings.maxResults <= this.receivedCount) ||
+            (settings.feedReceiveIncrementNumber > length) ||
+            (length == 0));
+
+    ////return (this._settings.maxResults <= this.receivedCount ||
+    ////        !data.feed.entry ||
+    ////        (data.feed.entry && data.feed.entry.length === 0))
 };
 
 
@@ -184,15 +199,16 @@ garafu.blogger.toc.Main.prototype.isAllReceived = function (data) {
 */
 garafu.blogger.toc.Main.prototype.request = function () {
     var url, script, startIndex, endIndex;
-    
+    var increments = this._settings.feedReceiveIncrementNumber;
+
     // Calculate startIndex.
-    startIndex = this.requestedCount + 1;
+    startIndex = this.receivedCount + 1;
     
     // Calculate maxResults.
-    if (this.requestedCount + 500 < this._settings.maxResults) {
-        endIndex = this.requestedCount + 500;
+    if (this.receivedCount + increments < this._settings.maxResults) {
+        endIndex = this.receivedCount + increments;
     } else {
-        endIndex = this._settings.maxResults - this.requestedCount;
+        endIndex = this._settings.maxResults - this.receivedCount;
     }
     
     // Create request URL
@@ -205,9 +221,6 @@ garafu.blogger.toc.Main.prototype.request = function () {
     
     // Append to the body DOM element.
     document.body.appendChild(script);
-    
-    // Update requested counter.
-    this.requestedCount = endIndex;
 };
 
 
