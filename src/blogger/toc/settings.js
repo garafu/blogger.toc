@@ -54,6 +54,7 @@ garafu.blogger.toc.Settings = function () {
 garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
     return {
         blogURL: 'garafu.blogspot.jp',
+        keywords: [],
         maxResults: Infinity,
         sort: {
             key: 'published',
@@ -69,7 +70,7 @@ garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
         },
         thumbnail: {
             enabled: false,
-            noImageURL: 'http://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
+            noImageURL: 'https://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
         },
         published: {
             enabled: false,
@@ -119,7 +120,7 @@ garafu.blogger.toc.Settings.prototype.merge = function (settings, userSettings, 
     userSettings = userSettings || {};
 
     for (key in defaultSettings) {
-        if (typeof (defaultSettings[key]) === 'object') {
+        if (typeof (defaultSettings[key]) === 'object' && !(defaultSettings[key] instanceof Array)) {
             settings[key] = settings[key] || {};
             this.merge(settings[key], userSettings[key], defaultSettings[key]);
         } else {

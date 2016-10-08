@@ -137,6 +137,7 @@ var contract = {
 */
 var POSTSTOC_SETTINGS = {
     blogURL: '',
+    keywords: [],
     maxResults: Infinity,
     sort: {
         key: '',

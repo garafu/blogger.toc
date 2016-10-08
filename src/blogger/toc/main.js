@@ -104,7 +104,7 @@ garafu.blogger.toc.Main._data = contract;
 */
 garafu.blogger.toc.Main.load = function (data) {
     var self, origin, additional, merged;
-    
+
     // Get singleton instance.
     self = garafu.blogger.toc.Main.getInstance();
     
@@ -114,7 +114,7 @@ garafu.blogger.toc.Main.load = function (data) {
         garafu.blogger.toc.Main._data = data;
 
         // Update number of request increment.
-        self._settings.feedReceiveIncrementNumber = data.feed.entry.length;
+        self._settings.feedReceiveIncrementNumber = (data.feed.entry || []).length;
     } else if (data.feed.entry && data.feed.entry.length != 0) {
         // Merge receive data.
         origin = garafu.blogger.toc.Main._data.feed.entry;
@@ -183,10 +183,6 @@ garafu.blogger.toc.Main.prototype.isAllReceived = function (data) {
     return ((settings.maxResults <= this.receivedCount) ||
             (settings.feedReceiveIncrementNumber > length) ||
             (length == 0));
-
-    ////return (this._settings.maxResults <= this.receivedCount ||
-    ////        !data.feed.entry ||
-    ////        (data.feed.entry && data.feed.entry.length === 0))
 };
 
 
@@ -236,13 +232,26 @@ garafu.blogger.toc.Main.prototype.request = function () {
 */
 garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxResults) {
     var settings = this._settings;
+    var keywords = settings.keywords || [];
     var sorter = this._sorter;
     var url = '';
     
     // Create request URL.
     url += '\/\/';
     url += settings.blogURL;
-    url += '\/feeds\/posts\/summary?';
+    url += '\/feeds\/posts\/summary';
+    if (keywords.length > 0) {
+        url += '/-/';
+        for (var i = 0; i < keywords.length; i++) {
+            var keyword = keywords[i];
+            if (!keyword) {
+                continue;
+            }
+            url += encodeURIComponent(keyword);
+            url += '/';
+        }
+    }
+    url += '?';
     url += 'redirect=false&';
     url += 'start-index=' + startIndex + '&';
     url += 'max-results=' + maxResults + '&';
