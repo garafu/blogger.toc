@@ -54,6 +54,10 @@ var contract = {
                 scheme: '',
                 term: ''
             }],
+            summary: {
+                $t: '',
+                type: ''
+            },
             content: {
                 $t: '',
                 type: ''

@@ -70,17 +70,38 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     var settings = this._settings;
     var entry = this._data;
     var regexp = /https?:(\/\/[\w\-\.~#\$&\+\/:=\?%]+)/;
-    var container, published, updated, thumbnail, title, newsymbol, datetime, text, img;
+    var container, toppage, author, published, updated, image, thumbnail, anchor, title, newsymbol, datetime, text, img;
 
     // Create container DOM element.
     container = document.createElement('span');
     container.className = 'poststoc-entry';
+    container.setAttribute('itemscope', 'itemscope');
+    container.setAttribute('itemtype', 'https://schema.org/BlogPosting');
+
+    // Create entry page meta information
+    toppage = document.createElement('meta');
+    toppage.setAttribute('itemprop', 'mainEntityOfPage');
+    toppage.setAttribute('content', '//' + settings.blogURL);
+    container.appendChild(toppage);
+
+    // Create author meta information
+    author = document.createElement('meta');
+    author.setAttribute('itemprop', 'publisher author');
+    author.setAttribute('content', entry.author[0].name.$t);
+    container.appendChild(author);
 
     // Create thumbnail
     if (settings.thumbnail.enabled) {
+        image = this.createThumbnailElement(entry.media$thumbnail);
+        image.setAttribute('itemprop', 'image');
         thumbnail = document.createElement('span');
-        thumbnail.appendChild(this.createThumbnailElement(entry.media$thumbnail));
         thumbnail.className = 'poststoc-thumbnail';
+        thumbnail.appendChild(image);
+        container.appendChild(thumbnail);
+    } else if(entry.media$thumbnail) {
+        thumbnail = document.createElement('link');
+        thumbnail.setAttribute('itemprop', 'image');
+        thumbnail.setAttribute('href', entry.media$thumbnail.url);
         container.appendChild(thumbnail);
     }
 
@@ -91,6 +112,12 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
         published = document.createElement('span');
         published.appendChild(document.createTextNode(text));
         published.className = 'poststoc-published';
+        published.setAttribute('itemprop', 'datePublished');
+        container.appendChild(published);
+    } else {
+        published = document.createElement('meta');
+        published.setAttribute('itemprop', 'datePublished');
+        published.setAttribute('content', entry.published.$t);
         container.appendChild(published);
     }
 
@@ -101,14 +128,24 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
         text = settings.updated.format.format(datetime);
         updated.appendChild(document.createTextNode(text));
         updated.className = 'poststoc-updated';
+        updated.setAttribute('itemprop', 'dateModified');
+        container.appendChild(updated);
+    } else {
+        updated = document.createElement('meta');
+        updated.setAttribute('itemprop', 'dateModified');
+        updated.setAttribute('content', entry.updated.$t);
         container.appendChild(updated);
     }
 
     // Create title
-    title = document.createElement('a');
-    title.appendChild(document.createTextNode(entry.title.$t));
-    title.href = regexp.exec(entry.link[entry.link.length - 1].href)[1];
+    anchor = document.createElement('a');
+    anchor.appendChild(document.createTextNode(entry.title.$t));
+    anchor.href = regexp.exec(entry.link[entry.link.length - 1].href)[1];
+    anchor.setAttribute('itemprop', 'url');
+    title = document.createElement('span');
     title.className = 'poststoc-title';
+    title.setAttribute('itemprop', 'name headline');
+    title.appendChild(anchor);
     container.appendChild(title);
 
     // Create new symbol
