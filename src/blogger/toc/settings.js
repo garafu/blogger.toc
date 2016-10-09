@@ -54,7 +54,7 @@ garafu.blogger.toc.Settings = function () {
 garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
     return {
         blogURL: 'garafu.blogspot.jp',
-        keywords: [],
+        keyword: '',
         maxResults: Infinity,
         sort: {
             key: 'published',
@@ -70,7 +70,7 @@ garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
         },
         thumbnail: {
             enabled: false,
-            noImageURL: 'https://garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
+            noImageURL: '//garafu.github.io/blogger.toc/release/0.0.5/noimage.png'
         },
         published: {
             enabled: false,

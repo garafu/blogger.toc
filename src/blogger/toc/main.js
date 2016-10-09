@@ -232,24 +232,17 @@ garafu.blogger.toc.Main.prototype.request = function () {
 */
 garafu.blogger.toc.Main.prototype.createRequestURL = function (startIndex, maxResults) {
     var settings = this._settings;
-    var keywords = settings.keywords || [];
     var sorter = this._sorter;
     var url = '';
     
     // Create request URL.
-    url += '\/\/';
+    url += '//';
     url += settings.blogURL;
-    url += '\/feeds\/posts\/summary';
-    if (keywords.length > 0) {
+    url += '/feeds/posts/summary';
+    if (settings.keyword) {
         url += '/-/';
-        for (var i = 0; i < keywords.length; i++) {
-            var keyword = keywords[i];
-            if (!keyword) {
-                continue;
-            }
-            url += encodeURIComponent(keyword);
-            url += '/';
-        }
+        url += encodeURIComponent(settings.keyword);
+        url += '/';
     }
     url += '?';
     url += 'redirect=false&';
