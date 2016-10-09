@@ -69,6 +69,7 @@ garafu.blogger.toc.printer.Entry.prototype.getRootElement = function () {
 garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     var settings = this._settings;
     var entry = this._data;
+    var regexp = /https?:(\/\/[\w\-\.~#\$&\+\/:=\?%]+)/;
     var container, published, updated, thumbnail, title, newsymbol, datetime, text, img;
 
     // Create container DOM element.
@@ -106,7 +107,7 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     // Create title
     title = document.createElement('a');
     title.appendChild(document.createTextNode(entry.title.$t));
-    title.href = entry.link[entry.link.length - 1].href;
+    title.href = regexp.exec(entry.link[entry.link.length - 1].href)[1];
     title.className = 'poststoc-title';
     container.appendChild(title);
 

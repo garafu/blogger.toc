@@ -110,7 +110,7 @@ garafu.blogger.toc.printer.Category.prototype.initialize = function () {
     var url = '';
     
     // Create label search URL.
-    url += 'http://'
+    url += '//'
     url += settings.blogURL;
     url += '/search/label/';
     url += categoryName;

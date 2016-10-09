@@ -8,7 +8,7 @@ This script creates TOC of your blogger posts using feed data.
 Demo
 --------------------------
 
-[Try it out !!](http://garafu.github.io/blogger.toc/demo/index.html)
+[Try it out !!](//garafu.github.io/blogger.toc/demo/index.html)
 
 
 Usage
@@ -40,7 +40,7 @@ var POSTSTOC_SETTINGS = {
     }
 };
 </script>
-<script type="text/javascript" src="http://garafu.github.io/blogger.toc/release/0.0.7/blogger.toc.min.js"></script>
+<script type="text/javascript" src="//garafu.github.io/blogger.toc/release/0.0.7/blogger.toc.min.js"></script>
 
 ```
 4. Modify user settings.
@@ -70,4 +70,4 @@ For details of options are following.
 License
 --------------------------
 blogger.toc plugin released under the MIT license.  
-Please see [MIT-LICENSE.txt](https://github.com/garafu/blogger.toc/blob/master/MIT-LICENSE.txt) for details.
+Please see [MIT-LICENSE.txt](//github.com/garafu/blogger.toc/blob/master/MIT-LICENSE.txt) for details.
