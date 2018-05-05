@@ -60,10 +60,10 @@ var generateSourceCode = function () {
     code += '&lt;/script&gt;\r\n';
 
     // Create stylesheet link.
-    code += '&lt;link rel="stylesheet" type="text/css" href="http://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/' + $('#printstyle').val() + '.css" /&gt;\r\n';
+    code += '&lt;link rel="stylesheet" type="text/css" href="//garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/' + $('#printstyle').val() + '.css" /&gt;\r\n';
 
     // Create core link.
-    code += '&lt;script type="text/javascript" src="http://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/blogger.toc.min.js"&gt;&lt;/script&gt;';
+    code += '&lt;script type="text/javascript" src="//garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/blogger.toc.min.js"&gt;&lt;/script&gt;';
 
     return code;
 };
