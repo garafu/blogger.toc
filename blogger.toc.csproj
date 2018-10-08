@@ -118,7 +118,6 @@
     </Content>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
-    <Content Include="build.bat" />
     <Content Include="cmd.bat" />
     <Content Include="createDepsJs.bat" />
     <Content Include="lib\closure-compiler\COPYING" />
@@ -137,6 +136,8 @@
     <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="build-debug.bat" />
+    <Content Include="build-release.bat" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
