@@ -1,6 +1,6 @@
 ﻿var GENERATE_VERSION = 'latest';
-var DEFAULT_BLOG_URL = 'garafu.blogspot.jp';
-var DEFAULT_NOIMAGE_URL = 'http://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/noimage.png';
+var DEFAULT_BLOG_URL = 'garafu.blogspot.com';
+var DEFAULT_NOIMAGE_URL = 'https://garafu.github.io/blogger.toc/release/' + GENERATE_VERSION + '/noimage.png';
 var DEFAULT_DATETIME_FORMAT = 'yyyy/MM/dd HH:mm:ss';
 var DEFAULT_NEWPOST_SYMBOL = 'NEW !';
 var DEFAULT_NEWPOST_TERM = '30';
