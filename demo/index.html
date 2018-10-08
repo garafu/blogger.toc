@@ -41,6 +41,14 @@ Can try it using your blogger contents in this page.
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-2">
+                    <label for="keyword" class="control-label">keyword</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" id="keyword" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
                     <label for="sortkey" class="control-label">sort</label>
                 </div>
                 <div class="col-sm-2">
@@ -179,6 +187,22 @@ Can try it using your blogger contents in this page.
                             <option value="updated">updated</option>
                         </select>
                     </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="anchor-target" class="control-label">anchor target</label>
+                </div>
+                <div class="col-sm-10">
+                    <!-- <input type="text" id="anchor-target" value="" class="form-control" /> -->
+                    <select id="anchor-target" class="form-control">
+                        <option value="">Not specified (default)</option>
+                        <option value="_self">Same browsing window (_self)</option>
+                        <option value="_blank">Create new browsing window (_blank)</option>
+                        <option value="_parent">Parent browsing window (_parent)</option>
+                        <option value="_top">Top-level browsing window (_top)</option>
+                        <option value="garafu.blogger.toc">Same new window (specified value)</option>
+                    </select>
                 </div>
             </div>
 <!--

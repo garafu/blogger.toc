@@ -9,6 +9,7 @@ var DEFAULT_NEWPOST_TERM = '30';
 var createSettings = function () {
     return {
         blogURL: $('#blogurl').val(),
+        keyword: $('#keyword').val() ? $('#keyword').val() : undefined,
         sort: {
             key: $('#sortkey').val(),
             order: $('#sortorder').val()
@@ -31,7 +32,8 @@ var createSettings = function () {
             symbol: $('#newpost-symbol').val(),
             term: parseInt($('#newpost-term').val()),
             target: $('#newpost-target').val()
-        } : undefined
+        } : undefined,
+        target: $('#anchor-target').val() ? $('#anchor-target').val() :undefined
     };
 };
 
