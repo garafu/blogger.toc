@@ -80,7 +80,7 @@ garafu.blogger.toc.Settings.prototype.createDefaultSettings = function () {
             enabled: false,
             format: 'yyyy/MM/dd HH:mm:ss'
         },
-        feedReceiveIncrementNumber: 500
+        feedReceiveIncrementNumber: 400
     };
 };
 
