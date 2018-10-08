@@ -141,6 +141,9 @@ garafu.blogger.toc.printer.Entry.prototype.initialize = function () {
     anchor = document.createElement('a');
     anchor.appendChild(document.createTextNode(entry.title.$t));
     anchor.href = regexp.exec(entry.link[entry.link.length - 1].href)[1];
+    if (settings.target) {
+        anchor.target = settings.target;
+    }
     anchor.setAttribute('itemprop', 'url');
     title = document.createElement('span');
     title.className = 'poststoc-title';
